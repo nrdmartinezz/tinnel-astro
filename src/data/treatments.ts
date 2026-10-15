@@ -45,6 +45,8 @@ export interface TreatmentCard {
 
 export interface SplitBlock {
   type: 'split';
+  /** Anchor id for in-page links such as #forms. */
+  id?: string;
   title: string;
   /** Small cyan label above the title. */
   eyebrow?: string;
@@ -65,6 +67,8 @@ export interface SplitBlock {
 
 export interface CardsBlock {
   type: 'cards';
+  /** Anchor id for in-page links. */
+  id?: string;
   title?: string;
   /** Small cyan label above the title. */
   eyebrow?: string;
@@ -74,6 +78,8 @@ export interface CardsBlock {
 
 export interface FaqBlock {
   type: 'faq';
+  /** Anchor id for in-page links. */
+  id?: string;
   title: string;
   intro?: string[];
   /** Small cyan label above the title. */
@@ -91,7 +97,13 @@ export interface VideoBlock {
   title?: string;
 }
 
-export type TreatmentBlock = SplitBlock | CardsBlock | FaqBlock | VideoBlock;
+export interface MapBlock {
+  type: 'map';
+  /** Anchor id for in-page links. */
+  id?: string;
+}
+
+export type TreatmentBlock = SplitBlock | CardsBlock | FaqBlock | VideoBlock | MapBlock;
 
 export interface TreatmentHero {
   image: string;

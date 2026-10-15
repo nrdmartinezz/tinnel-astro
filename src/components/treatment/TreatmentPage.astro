@@ -17,6 +17,9 @@ import {
   type TreatmentBlock,
 } from '../../data/treatments';
 import { treatmentHeroes } from '../../data/treatmentHeroes';
+import { practiceImages, practicePages } from '../../data/practice';
+import { practiceHeroes } from '../../data/practiceHeroes';
+import MapEmbed from '../blocks/MapEmbed.astro';
 
 interface Props {
   page: Treatment;
@@ -94,12 +97,12 @@ const present = (source: Treatment): Treatment => {
 const page = present(Astro.props.page);
 
 const photo = (name?: string): ImageMetadata | undefined =>
-  name ? treatmentImages[name] : undefined;
+  name ? (treatmentImages[name] ?? practiceImages[name]) : undefined;
 
 const plain = (value: string) => value.replace(/<[^>]+>/g, '');
 
 const parentSlug = page.slug.includes('/') ? page.slug.slice(0, page.slug.lastIndexOf('/')) : '';
-const parent = treatments.find((entry) => entry.slug === parentSlug);
+const parent = [...treatments, ...practicePages].find((entry) => entry.slug === parentSlug);
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
@@ -116,7 +119,10 @@ const faqs = page.blocks.flatMap((block) => {
 const linkClass =
   'bg-brand-500 hover:bg-brand-600 inline-flex min-h-14 items-center justify-center self-start rounded-lg px-8 text-lg font-semibold text-white uppercase no-underline';
 
-const heroImage = photo(page.hero?.image) ?? treatmentHeroes[Astro.props.page.slug];
+const heroImage =
+  photo(page.hero?.image) ??
+  treatmentHeroes[Astro.props.page.slug] ??
+  practiceHeroes[Astro.props.page.slug];
 ---
 
 <BaseLayout
@@ -198,6 +204,7 @@ const heroImage = photo(page.hero?.image) ?? treatmentHeroes[Astro.props.page.sl
         const centered = block.align === 'center';
         return (
           <Section
+            id={block.id}
             background={page.hero ? 'base' : index % 2 === 0 ? 'base' : 'muted'}
             class:list={[page.hero && 'text-[#131313]', page.hero && index === 0 && 'pt-28']}
           >
@@ -316,10 +323,7 @@ const heroImage = photo(page.hero?.image) ?? treatmentHeroes[Astro.props.page.sl
             {block.youtubeId && (
               <Container class="pt-8">
                 <iframe
-                  class:list={[
-                    'aspect-video w-full rounded-md',
-                    centered && 'mx-auto max-w-xl',
-                  ]}
+                  class:list={['aspect-video w-full rounded-md', centered && 'mx-auto max-w-xl']}
                   src={`https://www.youtube-nocookie.com/embed/${block.youtubeId}`}
                   title={block.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -334,7 +338,7 @@ const heroImage = photo(page.hero?.image) ?? treatmentHeroes[Astro.props.page.sl
 
       if (block.type === 'cards') {
         return (
-          <Section background="muted">
+          <Section id={block.id} background="muted">
             <Container gap="lg">
               <div class="flex max-w-3xl flex-col gap-3">
                 {block.eyebrow && (
@@ -379,7 +383,11 @@ const heroImage = photo(page.hero?.image) ?? treatmentHeroes[Astro.props.page.sl
         const imageLast = block.imageSide !== 'start';
         if (image && block.eyebrow) {
           return (
-            <Section background="base" class={page.hero ? 'text-[#131313]' : undefined}>
+            <Section
+              id={block.id}
+              background="base"
+              class={page.hero ? 'text-[#131313]' : undefined}
+            >
               <Container layout="row" gap="lg" class="md:items-center">
                 <div class:list={['flex flex-col gap-4', 'md:w-1/2', imageLast && 'md:order-1']}>
                   <p class="text-brand-500 text-lg font-semibold uppercase">{block.eyebrow}</p>
@@ -452,6 +460,14 @@ const heroImage = photo(page.hero?.image) ?? treatmentHeroes[Astro.props.page.sl
               width="page"
             />
           </>
+        );
+      }
+
+      if (block.type === 'map') {
+        return (
+          <div id={block.id}>
+            <MapEmbed />
+          </div>
         );
       }
 
