@@ -1,18 +1,14 @@
 ---
 /**
- * Owns its outer element rather than wrapping in Section: sticky behaviour
- * needs its own positioning and stacking context. Container is used inside.
- *
- * The nav slots are filled by MegaMenu (md and up) and MobileNav (below md),
- * both reading src/config/navigation.ts — one tree, two renderings.
+ * Practice header: logo, phone, hours, bill pay, request appointment, and the
+ * menu button. The menu itself is MobileNav, open on every breakpoint.
  */
+import { Image } from 'astro:assets';
 import Container from '../ui/Container.astro';
-import Button from '../ui/Button.astro';
-import MegaMenu from './MegaMenu.astro';
 import MobileNav from './MobileNav.astro';
-import { navigation } from '../../config/navigation';
-import { site } from '../../config/site';
+import { site, officeLinks } from '../../config/site';
 import { Icon } from 'astro-icon/components';
+import logo from '../../assets/logo.png';
 
 export type HeaderSticky = 'static' | 'sticky' | 'shrink' | 'hide-on-scroll';
 
@@ -24,46 +20,68 @@ const { sticky = 'sticky' } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const positioned = sticky !== 'static';
+
+const ctaClass =
+  'inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-semibold tracking-wide text-white uppercase no-underline';
 ---
 
 <header
   data-sticky={sticky}
   class:list={[
-    'group/header border-line-base bg-surface-base z-50 w-full border-b',
-    // The mega panel is absolutely positioned against the header, so the header
-    // must be a positioned ancestor even when it isn't sticky.
+    'group/header border-line-base bg-surface-base z-50 w-full border-b shadow-sm',
     positioned ? 'sticky top-0' : 'relative',
   ]}
 >
-  <Container
-    as="div"
-    layout="bar"
-    gap="none"
-    class="justify-between gap-4 py-4 group-data-[scrolled=true]/header:py-2"
-  >
-    <a href="/" class="text-ink-base flex items-center gap-2 font-semibold no-underline">
-      <Icon name="lucide:hexagon" class="text-brand-600 size-7" aria-hidden="true" />
-      <span>{site.name}</span>
+  <Container as="div" layout="bar" gap="none" class="justify-between gap-4 py-3">
+    <a href="/" class="shrink-0 no-underline">
+      <Image
+        src={logo}
+        alt="HT Complete Family Dentistry — Sarina Harman-Tinnel, D.D.S."
+        class="h-14 w-auto max-md:h-12"
+        densities={[1, 2]}
+      />
     </a>
 
-    <MegaMenu currentPath={currentPath} />
+    <div class="flex items-center gap-3">
+      <div class="hidden items-center gap-4 lg:flex">
+        <a
+          href={`tel:${site.business.phoneHref}`}
+          class="text-navy-400 flex flex-col items-start leading-tight no-underline"
+        >
+          <span class="inline-flex items-center gap-2 text-lg font-semibold">
+            <Icon name="lucide:phone" class="text-brand-500 size-5" aria-hidden="true" />
+            {site.business.phone}
+          </span>
+          <span class="text-navy-400 pl-7 text-xs font-medium tracking-wide">
+            HOURS: 8:00am – 5:00pm
+          </span>
+        </a>
 
-    <div class="flex items-center gap-2">
+        <a
+          href={officeLinks.billPay}
+          class={`${ctaClass} bg-brand-500 hover:bg-brand-600`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Online Bill Pay
+        </a>
+        <a
+          href={officeLinks.appointment}
+          class={`${ctaClass} bg-navy-600 hover:bg-navy-700`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Request Appointment
+        </a>
+      </div>
+
       <a
         href={`tel:${site.business.phoneHref}`}
-        class="text-ink-base hidden min-h-11 items-center gap-2 px-2 font-medium no-underline lg:inline-flex"
+        class="text-navy-600 inline-flex size-11 items-center justify-center no-underline lg:hidden"
       >
-        <Icon name="lucide:phone" class="size-4" aria-hidden="true" />
-        {site.business.phone}
+        <span class="sr-only">Call {site.business.phone}</span>
+        <Icon name="lucide:phone" class="text-brand-500 size-6" aria-hidden="true" />
       </a>
-
-      {
-        navigation.cta && (
-          <Button href={navigation.cta.href} size="sm" class="max-md:hidden">
-            {navigation.cta.label}
-          </Button>
-        )
-      }
 
       <MobileNav currentPath={currentPath} />
     </div>
@@ -111,10 +129,8 @@ const positioned = sticky !== 'static';
         header.dataset.scrolled = String(y > 8);
 
         if (mode === 'hide-on-scroll') {
-          // Never retract while the drawer or a mega panel is open.
           const navOpen =
-            document.querySelector('#nav-toggle')?.getAttribute('aria-expanded') === 'true' ||
-            document.querySelector('.mega-item[data-open="true"]') !== null;
+            document.querySelector('#nav-toggle')?.getAttribute('aria-expanded') === 'true';
           header.dataset.hidden = String(!navOpen && y > lastY && y > 120);
         }
 

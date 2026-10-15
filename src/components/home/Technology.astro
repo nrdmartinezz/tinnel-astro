@@ -1,0 +1,65 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+
+const items = [
+  {
+    title: 'Invisalign',
+    body: 'At Harman-Tinnel Complete Family Dentistry, we are proud to offer Invisalign Clear Aligners to our patients! We believe that everyone deserves a healthy smile they love, and we know that aesthetics play a significant role in loving your smile. With the expertise of Dr. Tinnel, Dr. Whitney, and Dr. Garling, Invisalign aligners can transform the aesthetics of your smile, giving you a smile you’ll love for a lifetime.',
+  },
+  {
+    title: 'HT Smile 3D',
+    body: 'HT Smile 3D provides a comprehensive view of your teeth and gums, allowing us to detect problems that may be missed with traditional methods. This advanced imaging enables us to create a tailored treatment plan specifically designed for your needs.',
+  },
+];
+---
+
+<Section background="muted" spacing="md">
+  <Container layout="row" gap="lg" class="md:items-start">
+    <div class="flex flex-col gap-4 md:w-1/2">
+      <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">
+        Advanced Technology
+      </p>
+      <h2 class="text-brand-500 text-4xl font-semibold">Orthodontics of Tomorrow</h2>
+      <p>
+        At HT Complete Family Dentistry, we are excited to introduce HT Smile 3D, a revolutionary
+        tool designed to enhance your dental care. This advanced technology allows us to visualize
+        your dental needs with precision, helping to ensure that you receive the best possible
+        treatment. By utilizing state-of-the-art imaging techniques, we can identify issues early,
+        plan effective treatments, and improve your overall dental health. With HT Smile 3D, you’ll
+        experience a seamless blend of comfort and efficiency during your visits.
+      </p>
+    </div>
+
+    <div class="flex w-full flex-col gap-3 md:w-1/2">
+      {
+        items.map((item) => (
+          <details class="group bg-surface-base rounded-xl shadow-sm">
+            <summary class="text-navy-600 flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 font-semibold">
+              {item.title}
+              <span
+                class="text-brand-500 text-2xl leading-none group-open:hidden"
+                aria-hidden="true"
+              >
+                +
+              </span>
+              <span
+                class="text-brand-500 hidden text-2xl leading-none group-open:inline"
+                aria-hidden="true"
+              >
+                –
+              </span>
+            </summary>
+            <p class="px-5 pb-5">{item.body}</p>
+          </details>
+        ))
+      }
+    </div>
+  </Container>
+</Section>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

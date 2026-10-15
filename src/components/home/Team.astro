@@ -1,0 +1,123 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import kim from '../../assets/team-kim.jpg';
+import victoria from '../../assets/team-victoria.jpg';
+import robin from '../../assets/team-robin.jpg';
+import paige from '../../assets/team-paige.jpg';
+import sam from '../../assets/team-sam.jpg';
+import kelsey from '../../assets/team-kelsey.jpg';
+import nicole from '../../assets/team-nicole.jpg';
+import sarina from '../../assets/team-sarina.jpg';
+import christina from '../../assets/team-christina.jpg';
+import chloe from '../../assets/team-chloe.jpg';
+import cassy from '../../assets/team-cassy.jpg';
+import ashley from '../../assets/team-ashley.jpg';
+import lauren from '../../assets/team-lauren.jpg';
+import samantha from '../../assets/team-samantha.jpg';
+
+const team: { name: string; role: string; image: ImageMetadata }[] = [
+  { name: 'Kim', role: 'Dental Hygienist', image: kim },
+  { name: 'Victoria', role: 'Office Manager', image: victoria },
+  { name: 'Robin', role: 'Dental Assistant', image: robin },
+  { name: 'Paige', role: 'Dental Assistant', image: paige },
+  { name: 'Sam K', role: 'Dental Assistant', image: sam },
+  { name: 'Kelsey', role: 'Hygiene Coordinator', image: kelsey },
+  { name: 'Dr. Nicole', role: 'Associate Dentist', image: nicole },
+  { name: 'Dr. Sarina', role: 'Dentist', image: sarina },
+  { name: 'Christina', role: 'Dental Hygienist', image: christina },
+  { name: 'Chloe', role: 'Sterilization Tech', image: chloe },
+  { name: 'Cassy', role: 'Treatment Coordinator', image: cassy },
+  { name: 'Ashley', role: 'Dental Hygienist', image: ashley },
+  { name: 'Lauren', role: 'Dental Hygienist', image: lauren },
+  { name: 'Samantha', role: 'Billing Coordinator', image: samantha },
+];
+---
+
+<Section background="muted" spacing="md">
+  <Container gap="md">
+    <div class="flex w-full flex-col items-center gap-3 text-center">
+      <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">Meet The Team</p>
+      <h2 class="text-brand-500 text-4xl font-semibold">Your Dental Team</h2>
+      <p class="max-w-3xl">
+        From the moment you step foot into our office, you will be warmly greeted by our welcoming
+        team. At HTCFD, each of our team members is dedicated to providing you with the best dental
+        experience possible. Get to know our awesome team — we can’t wait to meet you!
+      </p>
+    </div>
+
+    <div class="w-full" data-carousel>
+      <div class="mb-4 flex justify-end gap-2">
+        <button
+          type="button"
+          data-carousel-prev
+          class="border-line-base bg-surface-base inline-flex size-11 items-center justify-center rounded-full border"
+        >
+          <span class="sr-only">Previous team members</span>
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button
+          type="button"
+          data-carousel-next
+          class="border-line-base bg-surface-base inline-flex size-11 items-center justify-center rounded-full border"
+        >
+          <span class="sr-only">Next team members</span>
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div
+        data-carousel-track
+        class="team-track flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+      >
+        {
+          team.map((member) => (
+            <a
+              href="/our-practice/meet-the-team/"
+              class="bg-surface-base w-56 shrink-0 snap-start overflow-hidden rounded-2xl no-underline shadow-md"
+            >
+              <Image
+                src={member.image}
+                alt={`${member.name}, ${member.role}`}
+                class="aspect-[3/4] w-full object-cover object-top"
+                widths={[240, 400]}
+                sizes="224px"
+              />
+              <span class="flex flex-col px-4 py-3 text-center">
+                <span class="text-navy-600 font-semibold">{member.name}</span>
+                <span class="text-ink-muted text-sm">{member.role}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div
+        data-carousel-dots
+        class="flex w-full flex-wrap justify-center"
+        role="group"
+        aria-label="Team pages"
+      >
+      </div>
+    </div>
+
+    <a
+      href="/our-practice/meet-the-team/"
+      class="bg-navy-600 hover:bg-navy-700 inline-flex min-h-12 items-center justify-center self-center rounded-lg px-6 text-sm font-semibold tracking-wide text-white uppercase no-underline"
+    >
+      Meet The Team
+    </a>
+  </Container>
+</Section>
+
+<style>
+  .team-track {
+    scrollbar-width: none;
+  }
+
+  .team-track::-webkit-scrollbar {
+    display: none;
+  }
+</style>

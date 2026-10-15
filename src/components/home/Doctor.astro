@@ -1,0 +1,125 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import { officeLinks } from '../../config/site';
+import { Icon } from 'astro-icon/components';
+import doctor from '../../assets/doctor.jpg';
+
+const credentials = [
+  { icon: 'lucide:scan', title: 'CEREC', body: 'Cad-Cam' },
+  { icon: 'lucide:shield-check', title: 'American Dental', body: 'Association' },
+  { icon: 'lucide:badge-check', title: 'Board-Certified', body: 'Dentist' },
+  { icon: 'lucide:graduation-cap', title: 'University of', body: 'Missouri-Kansas City' },
+];
+---
+
+<Section spacing="md">
+  <Container gap="lg">
+    <div class="grid w-full items-center gap-10 md:grid-cols-2">
+      <div class="relative mx-auto w-full max-w-md">
+        <Image
+          src={doctor}
+          alt="Dr. Sarina Harman-Tinnel - Family Dentist in Overland Park, KS"
+          class="h-auto w-full rounded-2xl object-cover"
+          widths={[400, 700]}
+          sizes="(min-width: 768px) 40vw, 90vw"
+        />
+        <button
+          type="button"
+          id="doctor-video-open"
+          class="bg-brand-500 hover:bg-brand-600 absolute bottom-4 left-4 inline-flex size-14 items-center justify-center rounded-full text-white shadow-lg"
+        >
+          <span class="sr-only">Play Dr. Sarina’s introduction video</span>
+          <Icon name="lucide:play" class="size-6" aria-hidden="true" />
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">
+          Your Family Dentist in Overland Park, KS
+        </p>
+        <h2 class="text-brand-500 text-4xl font-semibold">Meet The Doctor</h2>
+        <h3 class="text-navy-600 text-xl font-semibold">Dr. Sarina Harman-Tinnel</h3>
+        <div class="text-ink-base flex flex-col gap-4">
+          <p>
+            Dr. Sarina Harman-Tinnel first vowed to be an amazing dentist when she was a freshman in
+            high school. After facing some dental trauma of her own, she decided she wanted to
+            become an incredible dentist and became dedicated to providing positive experiences for
+            all of her future patients. Dr. Sarina graduated from the University of Missouri-Kansas
+            City Dental School in May of 2005. Ever since she graduated and began practicing
+            dentistry, Dr. Sarina has proudly helped her patients grow into excellent dental health.
+          </p>
+          <p>
+            Outside of the office, Dr. Sarina and her husband, Nick, enjoy the chaotic but sweet
+            time playing with their four children. They enjoy traveling in their free time and
+            occasionally escape to a nearby lake to sail and relax. Dr. Sarina is as dedicated to
+            each of her patients as she is to her wonderful family.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        credentials.map((item) => (
+          <li class="border-line-base flex items-center gap-3 rounded-xl border px-4 py-4">
+            <Icon name={item.icon} class="text-brand-500 size-8 shrink-0" aria-hidden="true" />
+            <span class="text-navy-600 text-sm leading-snug font-semibold">
+              {item.title}
+              <br />
+              {item.body}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>
+
+<dialog
+  id="doctor-video"
+  class="backdrop:bg-navy-950/70 w-[min(56rem,calc(100%-2rem))] rounded-xl p-0"
+>
+  <div class="flex items-center justify-between px-4 py-3">
+    <p class="font-semibold">Meet Dr. Sarina</p>
+    <button type="button" id="doctor-video-close" class="inline-flex min-h-11 items-center px-3">
+      Close
+    </button>
+  </div>
+  <div class="aspect-video bg-black">
+    <iframe
+      id="doctor-video-frame"
+      class="h-full w-full"
+      title="Dr. Sarina Harman-Tinnel introduction"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      data-src={`https://www.youtube.com/embed/${officeLinks.youtubeId}?autoplay=1`}></iframe>
+  </div>
+</dialog>
+
+<script>
+  const open = document.querySelector<HTMLButtonElement>('#doctor-video-open');
+  const close = document.querySelector<HTMLButtonElement>('#doctor-video-close');
+  const dialog = document.querySelector<HTMLDialogElement>('#doctor-video');
+  const frame = document.querySelector<HTMLIFrameElement>('#doctor-video-frame');
+
+  const stop = () => {
+    if (frame) frame.src = '';
+  };
+
+  open?.addEventListener('click', () => {
+    if (!dialog || !frame) return;
+    frame.src = frame.dataset.src ?? '';
+    dialog.showModal();
+  });
+
+  close?.addEventListener('click', () => {
+    dialog?.close();
+  });
+
+  dialog?.addEventListener('close', stop);
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+</script>

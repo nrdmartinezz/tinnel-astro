@@ -1,0 +1,49 @@
+---
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import { site, officeLinks } from '../../config/site';
+import { Icon } from 'astro-icon/components';
+---
+
+<Section background="muted" spacing="md">
+  <Container layout="row" gap="lg" class="md:items-center">
+    <div class="flex flex-col gap-4 md:w-3/5">
+      <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">
+        Overland Park, Kansas
+      </p>
+      <h2 class="text-brand-500 text-4xl font-semibold">Brand New Location!</h2>
+      <div class="flex flex-col gap-4">
+        <p>
+          We’re excited to welcome you to our newest location in Overland Park, KS—bringing the
+          trusted care of Harman-Tinnel Complete Family Dentistry to a growing community of families
+          and professionals. Conveniently located and designed with your comfort in mind, our
+          Overland Park office offers the same full range of general and cosmetic dentistry services
+          that our patients know and love.
+        </p>
+        <p>
+          Whether you’re looking for routine cleanings, preventive care, or a complete smile
+          makeover, our experienced team is here to help you achieve your oral health goals in a
+          warm, modern setting.
+        </p>
+        <p>
+          Schedule your appointment today and experience the Harman-Tinnel difference close to home.
+        </p>
+      </div>
+    </div>
+
+    <a
+      href={officeLinks.maps}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-surface-base text-navy-600 hover:border-brand-500 flex w-full flex-col gap-3 rounded-2xl p-6 no-underline shadow-md md:w-2/5"
+    >
+      <Icon name="lucide:map-pin" class="text-brand-500 size-8" aria-hidden="true" />
+      <span class="text-lg font-semibold">
+        {site.business.address.street}<br />
+        {site.business.address.locality}, {site.business.address.region}{' '}
+        {site.business.address.postalCode}
+      </span>
+      <span class="text-brand-700 text-sm font-semibold">Get directions</span>
+    </a>
+  </Container>
+</Section>

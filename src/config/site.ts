@@ -65,6 +65,7 @@ export interface SiteConfig {
     x?: string;
     youtube?: string;
     tiktok?: string;
+    google?: string;
   };
 
   /** Absolute or site-relative path to the fallback Open Graph image. */
@@ -92,38 +93,39 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  url: 'https://example.com',
-  name: 'Demo Business',
-  legalName: 'Demo Business LLC',
-  tagline: 'Straightforward work, done right the first time.',
+  url: 'https://drtinnel.com',
+  name: 'HT Complete Family Dentistry',
+  legalName: 'Sarina Harman-Tinnel, DDS',
+  tagline: 'Your Smile is Our Passion',
   description:
-    'Demo Business is a placeholder used by the starter template. Replace this copy during project setup.',
+    'Experience personalized, family-friendly dental care in Overland Park. Call 913-962-0036 to schedule an appointment for your pediatric, Invisalign, or preventative dentistry needs in Lenexa, Overland Park, Leawood, or Kansas City.',
   locale: 'en-US',
 
   business: {
-    schemaType: 'LocalBusiness',
-    phone: '(555) 010-4477',
-    phoneHref: '+15550104477',
-    email: 'hello@example.com',
+    schemaType: 'Dentist',
+    phone: '913-962-0036',
+    phoneHref: '+19139620036',
+    email: 'info@drtinnel.com',
     address: {
-      street: '1200 Market Street, Suite 400',
-      locality: 'Columbus',
-      region: 'OH',
-      postalCode: '43215',
+      street: '7621 Frontage Road',
+      locality: 'Overland Park',
+      region: 'KS',
+      postalCode: '66204',
       country: 'US',
     },
-    geo: { latitude: 39.9612, longitude: -82.9988 },
-    hours: ['Mo-Fr 08:00-17:00', 'Sa 09:00-13:00'],
-    priceRange: '$$',
+    geo: { latitude: 38.9937367, longitude: -94.7207819 },
+    hours: ['Mo-Fr 08:00-17:00'],
   },
 
   social: {
-    facebook: 'https://facebook.com/example',
-    instagram: 'https://instagram.com/example',
-    linkedin: 'https://linkedin.com/company/example',
+    facebook: 'https://www.facebook.com/htcompletefamilydentistry/',
+    x: 'https://twitter.com/DrHarmanTinnel',
+    youtube: 'https://www.youtube.com/channel/UCJCaVniVmRg9t5KVGaoEW7w',
+    google:
+      'https://www.google.com/maps/place/Sarina+Harman-Tinnel,+DDS,+LLC/@38.9937408,-94.7229759,17z/data=!3m1!4b1!4m15!1m7!3m6!1s0x87c0ecb6f6b4a4c7:0x98ba812a0d60da73!2s11644+W+75th+St+%23101,+Overland%20Park,+KS+66214!3b1!8m2!3d38.9937624!4d-94.7209222!3m6!1s0x87c0ecb6e8739f5f:0x9aa008656434bd28!8m2!3d38.9937367!4d-94.7207819!9m1!1b1',
   },
 
-  defaultOgImage: '/og-default.png',
+  defaultOgImage: '/og-default.jpg',
 
   formEndpoint: '/api/submit.php',
   recaptchaSiteKey: '',
@@ -144,6 +146,19 @@ export const site: SiteConfig = {
   },
 
   consent: 'none',
+};
+
+/** Off-site tools and profiles that stay on the current vendors. */
+export const officeLinks = {
+  maps: site.social.google ?? '',
+  billPay:
+    'https://www.patientconnect365.com/payment/Index/Kansas/OverlandPark/66204/HT_Complete_Family_Dentistry',
+  appointment:
+    'https://d1.patientconnect365.com/Portal/Index/02ada69b765a4aba9c9b4667a2e6d1f0/RequestAppointment/1',
+  portal: 'https://rwl.io/p9221',
+  referralForm: 'https://drtinnel.com/wp-content/uploads/2026/01/HTCFD-Referral-Form.pdf',
+  youtubeId: 'rD1TgyXyFgg',
+  npg: 'https://newpatientgroup.com/orthodontic-consultants/',
 };
 
 export const formattedAddress = [

@@ -1,0 +1,21 @@
+---
+import TreatmentPage from '../components/treatment/TreatmentPage.astro';
+import { treatments } from '../data/treatments';
+
+export function getStaticPaths() {
+  return treatments.map((page) => ({
+    params: { treatment: page.slug },
+  }));
+}
+
+const slug = Array.isArray(Astro.params.treatment)
+  ? Astro.params.treatment.join('/')
+  : Astro.params.treatment;
+const page = treatments.find((entry) => entry.slug === slug);
+
+if (!page) {
+  throw new Error(`Unknown treatment route: ${slug ?? ''}`);
+}
+---
+
+<TreatmentPage page={page} />

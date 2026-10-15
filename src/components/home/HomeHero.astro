@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../ui/Container.astro';
+import Field from '../ui/Field.astro';
+import FormMessage from '../ui/FormMessage.astro';
+import SocialLinks from '../layout/SocialLinks.astro';
+import { site, officeLinks } from '../../config/site';
+import hero from '../../assets/hero.jpg';
+
+const action = site.formEndpoint || '';
+const thankYou = new URL('/thank-you/', site.url).href;
+
+const helpOptions = [
+  'Request Appointment',
+  'Invisalign Info',
+  'Aesthetics Info',
+  'Special Deals Info',
+].map((label) => ({ label, value: label }));
+---
+
+<section class="relative">
+  <div class="relative flex min-h-[34rem] items-center overflow-hidden">
+    <Image
+      src={hero}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover"
+      widths={[800, 1400, 2000]}
+      sizes="100vw"
+    />
+    <video
+      class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="bg-navy-950/45 absolute inset-0" aria-hidden="true"></div>
+
+    <Container
+      class="relative z-10 items-center py-24 text-center text-white"
+      align="center"
+      gap="md"
+    >
+      <h1 class="max-w-3xl text-5xl leading-tight font-semibold text-balance text-white">
+        Your Smile is<br />Our Passion
+      </h1>
+      <SocialLinks />
+      <p class="max-w-2xl text-lg text-white/90">
+        Proudly serving the communities of Lenexa, Overland Park, Leawood, Shawnee, Kansas City, and
+        surrounding areas.
+      </p>
+    </Container>
+  </div>
+
+  <Container class="relative z-10 -mt-16 pb-4">
+    <div class="bg-surface-base mx-auto w-full max-w-4xl rounded-2xl px-6 py-8 shadow-lg md:px-10">
+      <h2 class="text-navy-600 mb-6 text-center text-xl font-semibold tracking-[0.12em] uppercase">
+        Reach Out To Us
+      </h2>
+
+      <form
+        id="hero-form"
+        action={action}
+        method="POST"
+        class="relative grid gap-4 md:grid-cols-2"
+        data-site-form
+        data-thank-you={thankYou}
+        data-track-source="hero-form"
+      >
+        {action && <input type="hidden" name="form_type" value="contact" />}
+
+        <div class="absolute left-[-9999px]" aria-hidden="true">
+          <label for="hero-gotcha">Leave this field empty</label>
+          <input type="text" id="hero-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <Field id="hero-name" name="name" label="Name" autocomplete="name" required />
+        <Field id="hero-phone" name="phone" label="Phone" type="tel" autocomplete="tel" />
+        <Field
+          id="hero-email"
+          name="email"
+          label="Email"
+          type="email"
+          autocomplete="email"
+          required
+        />
+        <Field
+          id="hero-message"
+          name="message"
+          label="How Can We Help?"
+          type="select"
+          options={helpOptions}
+          required
+        />
+
+        <div class="md:col-span-2">
+          <FormMessage id="hero-form-message" />
+        </div>
+
+        <div class="flex justify-center md:col-span-2">
+          <button
+            type="submit"
+            class="bg-navy-600 hover:bg-navy-700 inline-flex min-h-12 items-center justify-center rounded-lg px-8 text-sm font-semibold tracking-wide text-white uppercase"
+          >
+            Contact Us
+          </button>
+        </div>
+      </form>
+
+      <p class="text-ink-muted mt-4 text-center text-sm">
+        Prefer to schedule directly?
+        <a
+          href={officeLinks.appointment}
+          class="text-brand-700 font-semibold"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Request an appointment online
+        </a>
+      </p>
+    </div>
+  </Container>
+</section>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>('section video');
+
+  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.removeAttribute('autoplay');
+    video.pause();
+  }
+</script>

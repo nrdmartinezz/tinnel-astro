@@ -1,0 +1,89 @@
+---
+import Container from '../ui/Container.astro';
+import Field from '../ui/Field.astro';
+import FormMessage from '../ui/FormMessage.astro';
+import { site } from '../../config/site';
+import { Icon } from 'astro-icon/components';
+
+const action = site.formEndpoint || '';
+const thankYou = new URL('/thank-you/', site.url).href;
+---
+
+<section class="bg-navy-600 text-white">
+  <Container layout="row" gap="lg" class="py-section md:items-start">
+    <div class="flex w-full flex-col gap-4 md:w-1/2">
+      <h2 class="text-4xl font-semibold text-white">Get In Touch</h2>
+      <ul class="flex flex-col gap-2">
+        <li>
+          <a
+            href={`tel:${site.business.phoneHref}`}
+            class="inline-flex min-h-11 items-center gap-2 text-white no-underline"
+          >
+            <Icon name="lucide:phone" class="size-5" aria-hidden="true" />
+            {site.business.phone}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`mailto:${site.business.email}`}
+            class="inline-flex min-h-11 items-center gap-2 text-white no-underline"
+          >
+            <Icon name="lucide:mail" class="size-5" aria-hidden="true" />
+            {site.business.email}
+          </a>
+        </li>
+      </ul>
+      <p class="max-w-reading text-white/90">
+        Do you have a question about a dental procedure or office policy? Do you need to know if we
+        accept your dental insurance? No matter your question or concern, we’re here to help. Give
+        us a call at {site.business.phone} or fill out the contact form and one of our friendly team members
+        will be happy to help you!
+      </p>
+    </div>
+
+    <form
+      id="contact-form"
+      action={action}
+      method="POST"
+      class="bg-surface-base text-ink-base relative flex w-full flex-col gap-4 rounded-2xl p-6 md:w-1/2"
+      data-site-form
+      data-thank-you={thankYou}
+      data-track-source="contact-form"
+    >
+      {action && <input type="hidden" name="form_type" value="contact" />}
+
+      <div class="absolute left-[-9999px]" aria-hidden="true">
+        <label for="contact-gotcha">Leave this field empty</label>
+        <input type="text" id="contact-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <Field id="contact-name" name="name" label="Name" autocomplete="name" required />
+      <Field
+        id="contact-email"
+        name="email"
+        label="Email"
+        type="email"
+        autocomplete="email"
+        required
+      />
+      <Field id="contact-phone" name="phone" label="Phone" type="tel" autocomplete="tel" required />
+      <Field
+        id="contact-message"
+        name="message"
+        label="Message"
+        type="textarea"
+        rows={4}
+        required
+      />
+
+      <FormMessage id="contact-form-message" />
+
+      <button
+        type="submit"
+        class="bg-brand-500 hover:bg-brand-600 inline-flex min-h-12 items-center justify-center self-start rounded-lg px-8 text-sm font-semibold tracking-wide text-white uppercase"
+      >
+        Contact Us
+      </button>
+    </form>
+  </Container>
+</section>

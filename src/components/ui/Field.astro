@@ -8,8 +8,10 @@ import type { HTMLAttributes } from 'astro/types';
 
 export type FieldType = 'text' | 'email' | 'tel' | 'url' | 'textarea' | 'select';
 
-interface Props extends Omit<HTMLAttributes<'input'>, 'class' | 'type' | 'name'> {
+interface Props extends Omit<HTMLAttributes<'input'>, 'class' | 'type' | 'name' | 'id'> {
   name: string;
+  /** Defaults to `name`. Set this when two forms on one page share a name. */
+  id?: string;
   label: string;
   type?: FieldType;
   help?: string;
@@ -22,6 +24,7 @@ interface Props extends Omit<HTMLAttributes<'input'>, 'class' | 'type' | 'name'>
 
 const {
   name,
+  id,
   label,
   type = 'text',
   help,
@@ -33,8 +36,9 @@ const {
   ...rest
 } = Astro.props;
 
-const helpId = help ? `${name}-help` : undefined;
-const errorId = `${name}-error`;
+const fieldId = id ?? name;
+const helpId = help ? `${fieldId}-help` : undefined;
+const errorId = `${fieldId}-error`;
 
 const controlClass =
   'w-full min-h-12 rounded-md border border-line-base bg-surface-base px-3 py-2 text-base ' +
@@ -43,7 +47,7 @@ const controlClass =
 ---
 
 <div class:list={['field flex flex-col gap-1.5', className]}>
-  <label for={name} class="font-medium">
+  <label for={fieldId} class="font-medium">
     {label}
     {!required && <span class="text-ink-muted font-normal"> (optional)</span>}
   </label>
@@ -59,7 +63,7 @@ const controlClass =
   {
     type === 'textarea' ? (
       <textarea
-        id={name}
+        id={fieldId}
         name={name}
         rows={rows}
         required={required}
@@ -69,7 +73,7 @@ const controlClass =
       />
     ) : type === 'select' ? (
       <select
-        id={name}
+        id={fieldId}
         name={name}
         required={required}
         aria-describedby={helpId}
@@ -82,7 +86,7 @@ const controlClass =
       </select>
     ) : (
       <input
-        id={name}
+        id={fieldId}
         name={name}
         type={type}
         required={required}

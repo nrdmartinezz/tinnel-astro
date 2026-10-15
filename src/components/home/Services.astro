@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Container from '../ui/Container.astro';
+import Section from '../ui/Section.astro';
+import { officeLinks } from '../../config/site';
+import invisalign from '../../assets/invisalign.jpg';
+import aesthetics from '../../assets/aesthetics.jpg';
+import children from '../../assets/children.jpg';
+import whitening from '../../assets/whitening.jpg';
+import crowns from '../../assets/crowns.jpg';
+import implants from '../../assets/implants.jpg';
+
+const services: { title: string; href: string; image: ImageMetadata; alt: string }[] = [
+  {
+    title: 'Invisalign Treatments',
+    href: '/invisalign/',
+    image: invisalign,
+    alt: 'Invisalign - Overland Park - Kansas City',
+  },
+  {
+    title: 'Aesthetic Treatments',
+    href: '/aesthetics/',
+    image: aesthetics,
+    alt: 'Aesthetic Treatments - Overland Park - Kansas City',
+  },
+  {
+    title: "Children's Dentistry",
+    href: '/childrens-dentistry/',
+    image: children,
+    alt: "Children's Dentistry - Overland Park - Kansas City",
+  },
+  {
+    title: 'Teeth Whitening',
+    href: '/cosmetic-dentistry/teeth-whitening/',
+    image: whitening,
+    alt: 'Teeth Whitening - Overland Park - Kansas City',
+  },
+  {
+    title: 'Tooth Crowns',
+    href: '/general-dentistry/crowns/',
+    image: crowns,
+    alt: 'Tooth Crown - Overland Park - Kansas City',
+  },
+  {
+    title: 'Dental Implants',
+    href: '/general-dentistry/dental-implants/',
+    image: implants,
+    alt: 'Dental Implants - Overland Park - Kansas City',
+  },
+];
+---
+
+<Section spacing="md">
+  <Container gap="lg">
+    <div class="grid w-full items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+      <div class="flex flex-col gap-4">
+        <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">Our Services</p>
+        <h2 class="text-brand-500 text-4xl font-semibold">How We Can Help</h2>
+        <p>
+          At Harman-Tinnel Complete Family Dentistry, we provide comprehensive general and cosmetic
+          dentistry to keep your smile healthy and radiant.
+        </p>
+        <p>
+          Our general dentistry services include routine cleanings, exams, and preventive care to
+          protect your oral health and catch issues early—keeping your smile in top shape for years
+          to come.
+        </p>
+        <p>
+          Want to enhance your smile? Our cosmetic treatments—including teeth whitening, veneers,
+          bonding, and full smile makeovers—are personalized to your goals, combining modern
+          technology with artistic detail for results that look as good as they feel.
+        </p>
+        <p>Let’s create a smile you love to share.</p>
+        <a
+          href={officeLinks.appointment}
+          class="bg-navy-600 hover:bg-navy-700 inline-flex min-h-12 w-fit items-center justify-center rounded-lg px-6 text-sm font-semibold tracking-wide text-white uppercase no-underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get Started Today!
+        </a>
+      </div>
+
+      <ul class="grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1">
+        {
+          services.map((service) => (
+            <li>
+              <a
+                href={service.href}
+                class="group flex h-full flex-col overflow-hidden rounded-xl no-underline shadow-md"
+              >
+                <Image
+                  src={service.image}
+                  alt={service.alt}
+                  class="aspect-square w-full object-cover"
+                  widths={[240, 400]}
+                  sizes="(min-width: 1024px) 16vw, (min-width: 768px) 40vw, 90vw"
+                />
+                <span class="text-navy-600 group-hover:text-brand-600 px-3 py-4 text-center text-sm font-semibold tracking-wide uppercase">
+                  {service.title}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Container>
+</Section>

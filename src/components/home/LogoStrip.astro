@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ada from '../../assets/ada.png';
+import agd from '../../assets/agd.png';
+import asap from '../../assets/asap.png';
+import cerec from '../../assets/cerec.png';
+import kda from '../../assets/kda.png';
+import spear from '../../assets/spear.png';
+
+const logos: { src: ImageMetadata; alt: string }[] = [
+  { src: ada, alt: 'American Dental Association' },
+  { src: agd, alt: 'Academy of General Dentistry' },
+  { src: asap, alt: 'ASAP Pathway' },
+  { src: cerec, alt: 'Cerec Doctors' },
+  { src: kda, alt: 'Kansas Dental Association' },
+  { src: spear, alt: 'Spear Study Club' },
+];
+---
+
+<section class="overflow-hidden py-10" aria-label="Professional affiliations">
+  <div class="logo-marquee flex w-max">
+    {
+      [false, true].map((hidden) => (
+        <ul
+          class:list={['flex items-center gap-16 px-8', hidden && '']}
+          aria-hidden={hidden || undefined}
+        >
+          {logos.map((logo) => (
+            <li>
+              <Image
+                src={logo.src}
+                alt={hidden ? '' : logo.alt}
+                class="h-16 w-auto object-contain"
+                widths={[120, 220]}
+                sizes="140px"
+              />
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .logo-marquee {
+    animation: logo-marquee 32s linear infinite;
+  }
+
+  @keyframes logo-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

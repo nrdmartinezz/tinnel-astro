@@ -1,16 +1,11 @@
 ---
 /**
- * Mobile navigation (below md). Standard across projects — it inherits the
- * client's tokens and is not designed per site.
- *
- * The drawer marks the rest of the page `inert`, locks body scroll, and
- * restores focus to the hamburger on close. Nested links are accordions from
- * the same tree, so nothing here diverges from the desktop menu.
+ * Site menu. The live header uses a Menu button at every width, so this drawer
+ * is not limited to small screens.
  */
 import Container from '../ui/Container.astro';
-import Button from '../ui/Button.astro';
 import { navigation } from '../../config/navigation';
-import { site } from '../../config/site';
+import { officeLinks } from '../../config/site';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -20,10 +15,13 @@ interface Props {
 const { currentPath } = Astro.props;
 
 const isCurrent = (href: string) =>
-  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+  href === '/' ? currentPath === '/' : href.startsWith('/') && currentPath.startsWith(href);
 
 const linkClass =
   'flex min-h-12 items-center gap-3 rounded-md px-2 text-base no-underline text-ink-base aria-[current=page]:text-ink-brand aria-[current=page]:font-medium';
+
+const externalAttrs = (link: { external?: boolean }) =>
+  link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
 <button
@@ -31,23 +29,42 @@ const linkClass =
   id="nav-toggle"
   aria-expanded="false"
   aria-controls="mobile-nav"
-  class="inline-flex size-11 items-center justify-center rounded-md hover:bg-neutral-100 md:hidden"
+  class="text-navy-400 inline-flex min-h-11 items-center gap-2 rounded-md px-2 font-semibold tracking-wide uppercase hover:bg-neutral-100"
 >
-  <span class="sr-only">Menu</span>
   <Icon name="lucide:menu" class="size-6" aria-hidden="true" />
+  Menu
 </button>
 
 <div
   id="mobile-nav"
   hidden
-  class="bg-surface-base fixed inset-0 top-(--header-h) z-40 overflow-y-auto overscroll-contain md:hidden"
+  class="bg-surface-base fixed inset-0 top-(--header-h) z-40 overflow-y-auto overscroll-contain"
 >
   <Container
     as="nav"
     gap="none"
-    aria-label="Mobile"
+    aria-label="Menu"
     class="py-4 pb-[max(2rem,env(safe-area-inset-bottom))]"
   >
+    <div class="mb-4 flex flex-col gap-3 lg:hidden">
+      <a
+        href={officeLinks.billPay}
+        class="bg-brand-500 inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-semibold tracking-wide text-white uppercase no-underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Online Bill Pay
+      </a>
+      <a
+        href={officeLinks.appointment}
+        class="bg-navy-600 inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-semibold tracking-wide text-white uppercase no-underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Request Appointment
+      </a>
+    </div>
+
     <ul class="flex w-full flex-col">
       {
         navigation.primary.map((item, index) => {
@@ -63,6 +80,7 @@ const linkClass =
                   href={item.href ?? '#'}
                   aria-current={isCurrent(item.href ?? '') ? 'page' : undefined}
                   class={linkClass}
+                  {...externalAttrs(item)}
                 >
                   {item.label}
                 </a>
@@ -80,11 +98,12 @@ const linkClass =
                     href={item.href}
                     aria-current={isCurrent(item.href) ? 'page' : undefined}
                     class={`${linkClass} flex-1`}
+                    {...externalAttrs(item)}
                   >
                     {item.label}
                   </a>
                 ) : (
-                  <span class={`${linkClass} flex-1`}>{item.label}</span>
+                  <span class={`${linkClass} flex-1 font-semibold`}>{item.label}</span>
                 )}
 
                 <button
@@ -113,14 +132,8 @@ const linkClass =
                       href={link.href}
                       aria-current={isCurrent(link.href) ? 'page' : undefined}
                       class={linkClass}
+                      {...externalAttrs(link)}
                     >
-                      {link.icon && (
-                        <Icon
-                          name={link.icon}
-                          class="text-brand-600 size-5 shrink-0"
-                          aria-hidden="true"
-                        />
-                      )}
                       {link.label}
                     </a>
                   </li>
@@ -131,21 +144,12 @@ const linkClass =
         })
       }
     </ul>
-
-    <div class="mt-6 flex flex-col gap-3">
-      {navigation.cta && <Button href={navigation.cta.href}>{navigation.cta.label}</Button>}
-      <Button href={`tel:${site.business.phoneHref}`} variant="secondary">
-        <Icon name="lucide:phone" class="size-4" aria-hidden="true" />
-        {site.business.phone}
-      </Button>
-    </div>
   </Container>
 </div>
 
 <style>
-  /* Overwritten from the real header height when the drawer opens. */
   #mobile-nav {
-    --header-h: 4rem;
+    --header-h: 4.5rem;
   }
 
   .mobile-accordion[aria-expanded='true'] :global(svg) {
@@ -159,7 +163,6 @@ const linkClass =
   const header = document.querySelector<HTMLElement>('header[data-sticky]');
 
   if (toggle && drawer) {
-    // Everything except the header and the drawer itself gets inerted.
     const outside = Array.from(document.body.children).filter(
       (el) => el !== header && el !== drawer,
     ) as HTMLElement[];
@@ -189,11 +192,6 @@ const linkClass =
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true')
         setDrawer(false);
-    });
-
-    // Crossing into desktop territory must not leave the page inert.
-    window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
-      if (event.matches && toggle.getAttribute('aria-expanded') === 'true') setDrawer(false);
     });
   }
 

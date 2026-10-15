@@ -41,7 +41,7 @@ const jsonLd = {
   mainEntity: items.map((item) => ({
     '@type': 'Question',
     name: item.question,
-    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    acceptedAnswer: { '@type': 'Answer', text: item.answer.replace(/<[^>]+>/g, '') },
   })),
 };
 ---
@@ -68,7 +68,10 @@ const jsonLd = {
                 aria-hidden="true"
               />
             </summary>
-            <p class="text-ink-muted max-w-reading pb-4">{item.answer}</p>
+            <p
+              class="text-ink-muted max-w-reading [&_a]:text-brand-700 pb-4 [&_a]:font-semibold"
+              set:html={item.answer}
+            />
           </details>
         ))
       }

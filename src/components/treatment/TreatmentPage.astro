@@ -1,0 +1,490 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import scallop from '../../assets/scalloped-bg-blue.png';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../ui/Section.astro';
+import Container from '../ui/Container.astro';
+import FAQ from '../blocks/FAQ.astro';
+import Reviews from '../home/Reviews.astro';
+import LogoStrip from '../home/LogoStrip.astro';
+import ContactBand from '../home/ContactBand.astro';
+import ClosingCta from '../home/ClosingCta.astro';
+import {
+  treatmentImages,
+  treatments,
+  type Treatment,
+  type TreatmentBlock,
+} from '../../data/treatments';
+import { treatmentHeroes } from '../../data/treatmentHeroes';
+
+interface Props {
+  page: Treatment;
+}
+
+/** Live pages put the intro in a hero card and the next section's label on the block before it. */
+const present = (source: Treatment): Treatment => {
+  if (source.hero) return source;
+  const blocks = source.blocks.map((block) => ({ ...block })) as TreatmentBlock[];
+  const first = blocks[0];
+  if (!first || first.type !== 'split') return source;
+  const next = blocks[1];
+  const hero = {
+    image: '',
+    title: first.title,
+    paragraphs: first.paragraphs ?? [],
+    button: next?.type === 'split' ? undefined : first.button,
+  };
+  if (next?.type === 'split' && first.button && !next.button) next.button = first.button;
+
+  for (let index = 0; index < blocks.length - 1; index += 1) {
+    const current = blocks[index];
+    const following = blocks[index + 1];
+    if (!('subtitle' in current) || !current.subtitle) continue;
+    if (/real patient reviews/i.test(current.subtitle)) continue;
+    if (
+      (following.type === 'split' || following.type === 'faq' || following.type === 'cards') &&
+      !following.eyebrow
+    ) {
+      following.eyebrow = current.subtitle;
+    }
+  }
+  for (const block of blocks) {
+    if ('subtitle' in block) block.subtitle = undefined;
+  }
+
+  if (first.image && (next?.type === 'split' || next?.type === 'faq') && !next.image) {
+    next.image = first.image;
+    next.imageAlt = first.imageAlt;
+    next.imageSide = 'start';
+  }
+
+  for (let index = 0; index < blocks.length - 1; index += 1) {
+    const current = blocks[index];
+    const following = blocks[index + 1];
+    if (current.type !== 'split' || !current.secondaryImage) continue;
+    if ((following.type === 'split' || following.type === 'faq') && !following.image) {
+      following.image = current.secondaryImage;
+      following.imageAlt = current.secondaryAlt;
+      following.imageSide = 'end';
+      current.secondaryImage = undefined;
+    }
+  }
+
+  blocks.shift();
+  let side: 'start' | 'end' = 'start';
+  for (const block of blocks) {
+    if ((block.type === 'split' || block.type === 'faq') && block.image && !block.imageSide) {
+      block.imageSide = side;
+      side = side === 'start' ? 'end' : 'start';
+    }
+    if (
+      block.type === 'split' &&
+      block.youtubeId &&
+      !block.image &&
+      !(block.paragraphs && block.paragraphs.length)
+    ) {
+      block.align = block.align ?? 'center';
+    }
+  }
+
+  return { ...source, hero, blocks };
+};
+
+const page = present(Astro.props.page);
+
+const photo = (name?: string): ImageMetadata | undefined =>
+  name ? treatmentImages[name] : undefined;
+
+const plain = (value: string) => value.replace(/<[^>]+>/g, '');
+
+const parentSlug = page.slug.includes('/') ? page.slug.slice(0, page.slug.lastIndexOf('/')) : '';
+const parent = treatments.find((entry) => entry.slug === parentSlug);
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  ...(parent ? [{ name: parent.name, href: `/${parent.slug}/` }] : []),
+  { name: page.name, href: `/${page.slug}/` },
+];
+
+const faqs = page.blocks.flatMap((block) => {
+  if (block.type === 'faq') return block.items;
+  if (block.type === 'split' && block.faqs) return block.faqs;
+  return [];
+});
+
+const linkClass =
+  'bg-brand-500 hover:bg-brand-600 inline-flex min-h-14 items-center justify-center self-start rounded-lg px-8 text-lg font-semibold text-white uppercase no-underline';
+
+const heroImage = photo(page.hero?.image) ?? treatmentHeroes[Astro.props.page.slug];
+---
+
+<BaseLayout
+  title={page.title}
+  titleExact
+  description={page.description}
+  breadcrumbs={breadcrumbs}
+  faqs={faqs.map((item) => ({ question: item.question, answer: plain(item.answer) }))}
+  service={{ name: page.name, description: page.description }}
+>
+  {
+    heroImage && page.hero ? (
+      <section class="relative z-10 min-h-[34rem] md:min-h-[45rem]">
+        <Image
+          src={heroImage}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+          widths={[800, 1400, 2000]}
+          sizes="100vw"
+        />
+        <div class="px-gutter relative z-10 flex min-h-[34rem] items-end md:min-h-[45rem]">
+          <div class="relative -mb-20 w-full max-w-[52rem] overflow-hidden rounded-[14px] bg-white px-6 pt-10 pb-8 md:px-9 md:pt-12">
+            <div
+              class="pointer-events-none absolute inset-0 bg-cover opacity-[0.16]"
+              style={`background-image: url('${scallop.src}')`}
+              aria-hidden="true"
+            />
+            <div class="relative flex flex-col gap-3">
+              <h1 class="text-brand-500 text-lg font-semibold uppercase">{page.h1}</h1>
+              <h2 class="text-navy-600 text-4xl font-bold md:text-5xl">{page.hero.title}</h2>
+              {page.hero.paragraphs.map((paragraph) => (
+                <p class="text-base leading-6 text-[#131313]" set:html={paragraph} />
+              ))}
+              {page.hero.button && (
+                <a
+                  href={page.hero.button.href}
+                  class={linkClass}
+                  target={page.hero.button.href.startsWith('http') ? '_blank' : undefined}
+                  rel={page.hero.button.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {page.hero.button.label}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    ) : (
+      <Section background="muted" spacing="sm">
+        <Container gap="sm">
+          <nav aria-label="Breadcrumb">
+            <ol class="text-ink-muted flex flex-wrap items-center gap-2 text-sm">
+              {breadcrumbs.map((crumb, index) => (
+                <li class="inline-flex items-center gap-2">
+                  {index > 0 && <span aria-hidden="true">/</span>}
+                  {index < breadcrumbs.length - 1 ? (
+                    <a href={crumb.href} class="text-navy-600 font-medium no-underline">
+                      {crumb.name}
+                    </a>
+                  ) : (
+                    <span aria-current="page">{crumb.name}</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+          <h1 class="text-navy-600 text-3xl font-semibold md:text-4xl">{page.h1}</h1>
+        </Container>
+      </Section>
+    )
+  }
+
+  {
+    page.blocks.map((block, index) => {
+      if (block.type === 'split') {
+        const image = photo(block.image);
+        const secondary = photo(block.secondaryImage);
+        const reverse = block.imageSide ? block.imageSide === 'start' : index % 2 === 1;
+        const centered = block.align === 'center';
+        return (
+          <Section
+            background={page.hero ? 'base' : index % 2 === 0 ? 'base' : 'muted'}
+            class:list={[page.hero && 'text-[#131313]', page.hero && index === 0 && 'pt-28']}
+          >
+            {page.hero && index === 0 && (
+              <Container gap="sm">
+                <nav aria-label="Breadcrumb">
+                  <ol class="text-brand-500 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                    {breadcrumbs.map((crumb, crumbIndex) => (
+                      <li class="inline-flex items-center gap-2">
+                        {crumbIndex > 0 && <span aria-hidden="true">/</span>}
+                        {crumbIndex < breadcrumbs.length - 1 ? (
+                          <a href={crumb.href} class="text-brand-500 no-underline">
+                            {crumb.name}
+                          </a>
+                        ) : (
+                          <span aria-current="page">{crumb.name}</span>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+              </Container>
+            )}
+            <Container
+              layout={image ? 'row' : 'stack'}
+              gap="lg"
+              class:list={[centered ? 'items-center' : 'md:items-center']}
+            >
+              <div
+                class:list={[
+                  'flex flex-col gap-4',
+                  image && 'md:w-1/2',
+                  reverse && 'md:order-2',
+                  centered && 'mx-auto w-full max-w-2xl items-center text-center',
+                ]}
+              >
+                {block.eyebrow && (
+                  <p class="text-brand-500 text-lg font-semibold uppercase">{block.eyebrow}</p>
+                )}
+                <h2
+                  class:list={[
+                    block.eyebrow
+                      ? 'text-navy-600 text-4xl font-bold'
+                      : 'text-brand-500 text-4xl font-semibold',
+                  ]}
+                >
+                  {block.title}
+                </h2>
+                {block.subtitle && (
+                  <h3 class="text-navy-600 text-2xl font-semibold">{block.subtitle}</h3>
+                )}
+                {(block.paragraphs ?? []).map((paragraph) => (
+                  <p class="[&_a]:text-brand-700 [&_a]:font-semibold" set:html={paragraph} />
+                ))}
+                {block.faqs && block.faqs.length > 0 && (
+                  <div>
+                    {block.faqs.map((item) => (
+                      <details name={`split-${index}`} class="border-line-base group border-b">
+                        <summary class="flex min-h-14 cursor-pointer items-center justify-between gap-4 py-2 font-medium">
+                          {item.question}
+                          <span
+                            aria-hidden="true"
+                            class="text-xl leading-none group-open:rotate-45"
+                          >
+                            +
+                          </span>
+                        </summary>
+                        <p
+                          class="text-ink-muted [&_a]:text-brand-700 max-w-reading pb-4 [&_a]:font-semibold"
+                          set:html={item.answer}
+                        />
+                      </details>
+                    ))}
+                  </div>
+                )}
+                {block.button && (
+                  <a
+                    href={block.button.href}
+                    class={linkClass}
+                    target={block.button.href.startsWith('http') ? '_blank' : undefined}
+                    rel={block.button.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {block.button.label}
+                  </a>
+                )}
+              </div>
+              {image && (
+                <div
+                  class:list={['flex w-full flex-col gap-4', 'md:w-1/2', reverse && 'md:order-1']}
+                >
+                  <Image
+                    src={image}
+                    alt={
+                      block.imageAlt && block.imageAlt.includes(' ') ? block.imageAlt : block.title
+                    }
+                    class="h-auto w-full rounded-md object-cover"
+                    widths={[480, 800]}
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                  />
+                  {secondary && (
+                    <Image
+                      src={secondary}
+                      alt={
+                        block.secondaryAlt && block.secondaryAlt.includes(' ')
+                          ? block.secondaryAlt
+                          : block.title
+                      }
+                      class="h-auto w-full rounded-md object-cover"
+                      widths={[480, 800]}
+                      sizes="(min-width: 768px) 40vw, 100vw"
+                    />
+                  )}
+                </div>
+              )}
+            </Container>
+            {block.youtubeId && (
+              <Container class="pt-8">
+                <iframe
+                  class:list={[
+                    'aspect-video w-full rounded-md',
+                    centered && 'mx-auto max-w-xl',
+                  ]}
+                  src={`https://www.youtube-nocookie.com/embed/${block.youtubeId}`}
+                  title={block.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                  loading="lazy"
+                />
+              </Container>
+            )}
+          </Section>
+        );
+      }
+
+      if (block.type === 'cards') {
+        return (
+          <Section background="muted">
+            <Container gap="lg">
+              <div class="flex max-w-3xl flex-col gap-3">
+                {block.eyebrow && (
+                  <p class="text-brand-500 text-lg font-semibold uppercase">{block.eyebrow}</p>
+                )}
+                {block.title && (
+                  <h2
+                    class:list={[
+                      block.eyebrow
+                        ? 'text-navy-600 text-4xl font-bold'
+                        : 'text-brand-500 text-4xl font-semibold',
+                    ]}
+                  >
+                    {block.title}
+                  </h2>
+                )}
+                {block.intro?.map((paragraph) => (
+                  <p class="[&_a]:text-brand-700 [&_a]:font-semibold" set:html={paragraph} />
+                ))}
+              </div>
+              <ul class="grid list-none gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {block.items.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="bg-surface-base flex h-full flex-col gap-3 rounded-2xl p-6 no-underline shadow-md"
+                    >
+                      <h3 class="text-navy-600 text-xl font-semibold">{item.title}</h3>
+                      <p class="text-ink-muted">{item.body}</p>
+                      <span class="text-brand-700 mt-auto font-semibold">Learn More</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Container>
+          </Section>
+        );
+      }
+
+      if (block.type === 'faq') {
+        const image = photo(block.image);
+        const imageLast = block.imageSide !== 'start';
+        if (image && block.eyebrow) {
+          return (
+            <Section background="base" class={page.hero ? 'text-[#131313]' : undefined}>
+              <Container layout="row" gap="lg" class="md:items-center">
+                <div class:list={['flex flex-col gap-4', 'md:w-1/2', imageLast && 'md:order-1']}>
+                  <p class="text-brand-500 text-lg font-semibold uppercase">{block.eyebrow}</p>
+                  <h2 class="text-navy-600 text-4xl font-bold">{block.title}</h2>
+                  {block.intro?.map((paragraph) => (
+                    <p class="[&_a]:text-brand-700 [&_a]:font-semibold" set:html={paragraph} />
+                  ))}
+                  <div>
+                    {block.items.map((item) => (
+                      <details name="faq" class="border-line-base group border-b">
+                        <summary class="flex min-h-14 cursor-pointer items-center justify-between gap-4 py-2 font-medium">
+                          {item.question}
+                          <span
+                            aria-hidden="true"
+                            class="text-xl leading-none group-open:rotate-45"
+                          >
+                            +
+                          </span>
+                        </summary>
+                        <p
+                          class="text-ink-muted [&_a]:text-brand-700 max-w-reading pb-4 [&_a]:font-semibold"
+                          set:html={item.answer}
+                        />
+                      </details>
+                    ))}
+                  </div>
+                </div>
+                <div class:list={['w-full', 'md:w-1/2', imageLast && 'md:order-2']}>
+                  <Image
+                    src={image}
+                    alt={
+                      block.imageAlt && block.imageAlt.includes(' ') ? block.imageAlt : block.title
+                    }
+                    class="h-auto w-full rounded-md object-cover"
+                    widths={[480, 800]}
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                  />
+                </div>
+              </Container>
+            </Section>
+          );
+        }
+        return (
+          <>
+            {image && (
+              <Section spacing="sm">
+                <Container layout="row" class="md:items-center">
+                  <Image
+                    src={image}
+                    alt={
+                      block.imageAlt && block.imageAlt.includes(' ') ? block.imageAlt : block.title
+                    }
+                    class="h-auto w-full rounded-md object-cover md:w-1/2"
+                    widths={[480, 800]}
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                  />
+                  {block.subtitle && (
+                    <h3 class="text-navy-600 text-2xl font-semibold md:w-1/2">{block.subtitle}</h3>
+                  )}
+                </Container>
+              </Section>
+            )}
+            <FAQ
+              title={block.title}
+              eyebrow={block.eyebrow}
+              body={block.intro?.map((paragraph) => plain(paragraph)).join(' ')}
+              items={block.items}
+              schema={false}
+              align="start"
+              width="page"
+            />
+          </>
+        );
+      }
+
+      return (
+        <Section>
+          <Container gap="md">
+            {block.title && <h2 class="text-brand-500 text-4xl font-semibold">{block.title}</h2>}
+            <iframe
+              class="aspect-video w-full rounded-2xl"
+              src={`https://www.youtube-nocookie.com/embed/${block.youtubeId}`}
+              title={block.title || 'Treatment video'}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            />
+          </Container>
+        </Section>
+      );
+    })
+  }
+
+  <Reviews />
+  <LogoStrip />
+  <ContactBand />
+  <ClosingCta />
+</BaseLayout>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary {
+    list-style: none;
+  }
+</style>
