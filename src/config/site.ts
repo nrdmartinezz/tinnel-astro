@@ -248,8 +248,8 @@ export const site: SiteConfig = {
   logoHeight: 113,
 
   formEndpoint: '/api/submit.php',
-  googlePlaceId: '',
-  recaptchaSiteKey: '',
+  googlePlaceId: 'ChIJX59z6LbswIcRKL00ZGUIoJo',
+  recaptchaSiteKey: '6LfxY_ctAAAAAHgAL2Lu8qvRltDpNUcYtf9sxsZt',
 
   analytics: {
     logdash: '',
