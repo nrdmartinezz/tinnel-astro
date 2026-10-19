@@ -29,6 +29,29 @@ export type SchemaBusinessType =
   | 'InsuranceAgency'
   | 'RealEstateAgent';
 
+export interface OpeningHours {
+  /** schema.org day names, e.g. 'Monday'. */
+  days: string[];
+  /** 24-hour time, e.g. '08:00'. */
+  opens: string;
+  closes: string;
+}
+
+export interface ProviderProfile {
+  /** Stable id used in JSON-LD `@id` fragments. */
+  id: string;
+  name: string;
+  honorificPrefix?: string;
+  honorificSuffix?: string;
+  jobTitle: string;
+  /** Site path, with leading and trailing slashes. */
+  url: string;
+  founder?: boolean;
+  alumniOf?: string[];
+  memberOf?: string[];
+  description?: string;
+}
+
 export interface SiteConfig {
   /** Absolute origin, no trailing slash. Must match `site` in astro.config.mjs. */
   url: string;
@@ -41,7 +64,7 @@ export interface SiteConfig {
   business: {
     schemaType: SchemaBusinessType;
     phone: string;
-    /** Digits only, E.164 — used for tel: links. */
+    /** Digits only, E.164 — used for tel: links and schema telephone. */
     phoneHref: string;
     email: string;
     address: {
@@ -53,10 +76,21 @@ export interface SiteConfig {
     };
     /** Omit entirely for service-area businesses with no walk-in location. */
     geo?: { latitude: number; longitude: number };
-    /** schema.org openingHours strings, e.g. 'Mo-Fr 08:00-17:00'. */
+    /** Visible hours lines, e.g. 'Mon–Thu 8:00am–5:00pm'. */
     hours: string[];
+    /** Structured hours for OpeningHoursSpecification. */
+    schedule?: OpeningHours[];
     priceRange?: string;
+    /** City names the practice serves. */
+    areaServed?: string[];
+    /** Broader region name, e.g. 'Greater Kansas City Metro'. */
+    serviceArea?: string;
+    medicalSpecialty?: string;
+    currenciesAccepted?: string;
   };
+
+  /** Dentists published on the site. Facts here must already appear on their bio pages. */
+  providers?: ProviderProfile[];
 
   social: {
     facebook?: string;
@@ -70,9 +104,23 @@ export interface SiteConfig {
 
   /** Absolute or site-relative path to the fallback Open Graph image. */
   defaultOgImage: string;
+  defaultOgImageAlt: string;
+  defaultOgImageWidth: number;
+  defaultOgImageHeight: number;
+
+  /** Public logo used for icons and the Dentist `logo` node. */
+  logo: string;
+  logoWidth: number;
+  logoHeight: number;
 
   /** Relative path to the PHP form handler. Blank disables all forms. */
   formEndpoint: string;
+
+  /**
+   * Public Google Place ID (starts with ChIJ). Used for the write-a-review link.
+   * The Places API key stays in ~/private/site-mail.php.
+   */
+  googlePlaceId: string;
 
   /**
    * Google reCAPTCHA v3 site key (public). Blank skips the widget. The matching
@@ -114,8 +162,58 @@ export const site: SiteConfig = {
       country: 'US',
     },
     geo: { latitude: 38.9937367, longitude: -94.7207819 },
-    hours: ['Mo-Fr 08:00-17:00'],
+    hours: ['Mon–Thu 8:00am–5:00pm'],
+    schedule: [
+      {
+        days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+        opens: '08:00',
+        closes: '17:00',
+      },
+    ],
+    priceRange: '$$',
+    areaServed: ['Lenexa', 'Overland Park', 'Leawood', 'Kansas City'],
+    serviceArea: 'Greater Kansas City Metro',
+    medicalSpecialty: 'Dentistry',
+    currenciesAccepted: 'USD',
   },
+
+  providers: [
+    {
+      id: 'dr-sarina-harman-tinnel',
+      name: 'Sarina Harman-Tinnel',
+      honorificPrefix: 'Dr.',
+      honorificSuffix: 'DDS',
+      jobTitle: 'General and Cosmetic Dentist',
+      url: '/our-practice/meet-dr-tinnel/',
+      founder: true,
+      alumniOf: ['University of Missouri-Kansas City Dental School'],
+      memberOf: [
+        'American Dental Association',
+        'Kansas Dental Association',
+        'Academy of General Dentistry',
+      ],
+    },
+    {
+      id: 'dr-nicole-whitney',
+      name: 'Nicole Whitney',
+      honorificPrefix: 'Dr.',
+      jobTitle: 'General and Cosmetic Dentist',
+      url: '/our-practice/meet-dr-whitney/',
+      alumniOf: [
+        'The University of Kansas',
+        'The University of Missouri-Kansas City (UMKC) School of Dentistry',
+      ],
+    },
+    {
+      id: 'dr-garling',
+      name: 'Dr. Garling',
+      jobTitle: 'General and Cosmetic Dentist',
+      url: '/our-practice/meet-dr-garling/',
+      alumniOf: ['University of Missouri – Kansas City (UMKC) School of Dentistry'],
+      description:
+        'Graduate of the University of Missouri – Kansas City (UMKC) School of Dentistry in 2022.',
+    },
+  ],
 
   social: {
     facebook: 'https://www.facebook.com/htcompletefamilydentistry/',
@@ -126,8 +224,15 @@ export const site: SiteConfig = {
   },
 
   defaultOgImage: '/og-default.jpg',
+  defaultOgImageAlt: 'The team at HT Complete Family Dentistry in Overland Park',
+  defaultOgImageWidth: 1200,
+  defaultOgImageHeight: 630,
+  logo: '/logo.png',
+  logoWidth: 409,
+  logoHeight: 113,
 
   formEndpoint: '/api/submit.php',
+  googlePlaceId: '',
   recaptchaSiteKey: '',
 
   analytics: {
@@ -173,3 +278,15 @@ export const logdashWebsiteId = site.analytics.logdash;
 export const hasAnalytics = Object.entries(site.analytics).some(
   ([key, value]) => key !== 'logdash' && Boolean(value),
 );
+
+/** Title tag and Open Graph title, including the site-name suffix. */
+export function formatPageTitle(title?: string, titleExact = false) {
+  if (!title) return `${site.name} — ${site.tagline}`;
+  return titleExact ? title : `${title} | ${site.name}`;
+}
+
+/** `@handle` from the X / Twitter profile URL. Blank when no profile is set. */
+export function twitterHandle() {
+  const profile = site.social.x?.replace(/\/$/, '').split('/').pop();
+  return profile ? `@${profile}` : '';
+}

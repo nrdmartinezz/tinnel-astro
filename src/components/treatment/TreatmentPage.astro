@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import scallop from '../../assets/scalloped-bg-blue.png';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -20,6 +20,7 @@ import { treatmentHeroes } from '../../data/treatmentHeroes';
 import { practiceImages, practicePages } from '../../data/practice';
 import { practiceHeroes } from '../../data/practiceHeroes';
 import MapEmbed from '../blocks/MapEmbed.astro';
+import { site } from '../../config/site';
 
 interface Props {
   page: Treatment;
@@ -123,15 +124,46 @@ const heroImage =
   photo(page.hero?.image) ??
   treatmentHeroes[Astro.props.page.slug] ??
   practiceHeroes[Astro.props.page.slug];
+
+const blockWithPhoto = page.blocks.find(
+  (block) => (block.type === 'split' || block.type === 'faq') && block.image,
+);
+const shareSource =
+  heroImage ??
+  (blockWithPhoto && (blockWithPhoto.type === 'split' || blockWithPhoto.type === 'faq')
+    ? photo(blockWithPhoto.image)
+    : undefined);
+
+const share = shareSource
+  ? await getImage({
+      src: shareSource,
+      width: 1200,
+      height: 630,
+      fit: 'cover',
+      format: 'jpg',
+    })
+  : undefined;
+
+const isService =
+  treatments.some((entry) => entry.slug === page.slug) || page.slug === 'emergency-appointments';
+const profile = site.providers?.find((provider) => provider.url === `/${page.slug}/`);
 ---
 
 <BaseLayout
   title={page.title}
   titleExact
   description={page.description}
+  image={share?.src}
+  imageAlt={share ? page.h1 : undefined}
+  imageWidth={share ? Number(share.attributes.width) : undefined}
+  imageHeight={share ? Number(share.attributes.height) : undefined}
   breadcrumbs={breadcrumbs}
   faqs={faqs.map((item) => ({ question: item.question, answer: plain(item.answer) }))}
-  service={{ name: page.name, description: page.description }}
+  service={isService
+    ? { name: page.name, description: page.description, url: `/${page.slug}/` }
+    : undefined}
+  profileId={profile?.id}
+  pageType={isService ? 'MedicalWebPage' : 'WebPage'}
 >
   {
     heroImage && page.hero ? (

@@ -1,10 +1,14 @@
 /** Scroll-snap carousels. Each root needs a track plus previous and next buttons. */
 export function initCarousels(): void {
   for (const root of document.querySelectorAll<HTMLElement>('[data-carousel]')) {
+    if (root.dataset.carouselReady === 'true') continue;
+
     const track = root.querySelector<HTMLElement>('[data-carousel-track]');
     const prev = root.querySelector<HTMLButtonElement>('[data-carousel-prev]');
     const next = root.querySelector<HTMLButtonElement>('[data-carousel-next]');
-    if (!track || !prev || !next) continue;
+    if (!track || !prev || !next || track.childElementCount === 0) continue;
+
+    root.dataset.carouselReady = 'true';
 
     track.style.scrollBehavior = 'auto';
 

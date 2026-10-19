@@ -1,39 +1,24 @@
 ---
 import Container from '../ui/Container.astro';
 import Section from '../ui/Section.astro';
-import { officeLinks } from '../../config/site';
+import { officeLinks, site } from '../../config/site';
 
-const reviews = [
-  {
-    name: 'Grace Rogers',
-    when: '6 days ago',
-    quote:
-      'I LOVE Dr. Garling & Jordan!! They are so caring and ensured I was comfortable throughout the morning! They worked me into their schedule and were AMAZING! Kelsey is also fantastic—I have so much anxiety around the dentist and they made me feel great about my visit. 11/10!!',
-  },
-  {
-    name: 'Debbie Williams',
-    when: '19 days ago',
-    quote:
-      'I had a wonderful experience at HT Family Dentistry with Dr. Sarina Tinnel and her team. The front desk staff made me feel welcome from the moment I walked in. Kim, my dental hygienist, gave me a thorough, gentle cleaning that was quick and painless and we had a good conversation too. I also appreciated the careful checkups, including a screening of my mouth and tongue. I highly recommend this practice!!',
-  },
-  {
-    name: 'Its me Just me',
-    when: '22 days ago',
-    quote: 'They are fairly quick getting you back and are kind and considerate.',
-  },
-];
+const writeReviewHref = site.googlePlaceId
+  ? `https://search.google.com/local/writereview?placeid=${encodeURIComponent(site.googlePlaceId)}`
+  : officeLinks.maps;
 ---
 
-<Section spacing="md">
+<Section spacing="md" data-reviews>
   <Container gap="md">
     <div class="flex w-full flex-col items-center gap-2 text-center">
       <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">
         Real Patient Reviews
       </p>
       <h2 class="text-brand-500 text-4xl font-semibold">What Our Patients Are Saying</h2>
+      <p class="text-ink-muted text-sm" data-reviews-summary hidden></p>
     </div>
 
-    <div class="w-full" data-carousel>
+    <div class="w-full min-w-0" data-carousel hidden>
       <div class="mb-4 flex justify-end gap-2">
         <button
           type="button"
@@ -57,30 +42,183 @@ const reviews = [
         data-carousel-track
         class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
       >
-        {
-          reviews.map((review) => (
-            <article class="border-line-base flex w-[min(100%,22rem)] shrink-0 snap-start flex-col gap-3 rounded-2xl border p-5 md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]">
-              <p class="text-brand-500" aria-label="5 out of 5 stars">
-                ★★★★★
-              </p>
-              <p class="text-ink-base">{review.quote}</p>
-              <p class="text-navy-600 mt-auto font-semibold">
-                {review.name}
-                <span class="text-ink-muted block text-sm font-normal">{review.when}</span>
-              </p>
-            </article>
-          ))
-        }
       </div>
     </div>
 
-    <a
-      href={officeLinks.maps}
-      class="text-brand-700 font-semibold"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      View reviews on Google
-    </a>
+    <p class="text-ink-muted flex items-center gap-2 text-sm" data-reviews-attribution hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="size-5" aria-hidden="true">
+        <path
+          fill="#FFC107"
+          d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"
+        ></path>
+        <path
+          fill="#FF3D00"
+          d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"
+        ></path>
+        <path
+          fill="#4CAF50"
+          d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3C29.3 35.1 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"
+        ></path>
+        <path
+          fill="#1976D2"
+          d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.2-3.5 5.7-6.6 7.1l.1.1 6.3 5.3C36.9 41.6 44 36 44 24c0-1.3-.1-2.7-.4-3.5z"
+        ></path>
+      </svg>
+      Reviews from Google
+    </p>
+
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      <a
+        href={officeLinks.maps}
+        class="text-brand-700 font-semibold"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Read reviews on Google
+      </a>
+      <a
+        href={writeReviewHref}
+        class="text-brand-700 font-semibold"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Add a review
+      </a>
+    </div>
   </Container>
 </Section>
+
+<script>
+  import { initCarousels } from '../../scripts/carousels';
+
+  type ReviewCard = {
+    author?: unknown;
+    authorUrl?: unknown;
+    rating?: unknown;
+    text?: unknown;
+    relativeTime?: unknown;
+  };
+
+  const safeHttps = (value: unknown): string => {
+    if (typeof value !== 'string' || value === '') return '';
+    try {
+      const url = new URL(value);
+      return url.protocol === 'https:' ? url.href : '';
+    } catch {
+      return '';
+    }
+  };
+
+  const FORMAT_TAGS = new Set(['B', 'STRONG', 'I', 'EM', 'BR']);
+  const DROPPED_TAGS = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'IFRAME', 'OBJECT', 'EMBED']);
+
+  /** Google review text can include simple HTML. Keep bold, italic, and breaks only. */
+  const appendFormatted = (parent: HTMLElement, source: string) => {
+    const withBreaks = source.replace(/\r\n|\r|\n/g, '<br>');
+    const parsed = new DOMParser().parseFromString(withBreaks, 'text/html');
+
+    const walk = (node: Node, target: HTMLElement) => {
+      for (const child of node.childNodes) {
+        if (child.nodeType === Node.TEXT_NODE) {
+          target.append(document.createTextNode(child.textContent ?? ''));
+          continue;
+        }
+        if (child.nodeType !== Node.ELEMENT_NODE) continue;
+
+        const element = child as HTMLElement;
+        if (DROPPED_TAGS.has(element.tagName)) continue;
+        if (!FORMAT_TAGS.has(element.tagName)) {
+          walk(element, target);
+          continue;
+        }
+        if (element.tagName === 'BR') {
+          target.append(document.createElement('br'));
+          continue;
+        }
+
+        const safe = document.createElement(element.tagName.toLowerCase());
+        walk(element, safe);
+        target.append(safe);
+      }
+    };
+
+    walk(parsed.body, parent);
+  };
+
+  const renderCard = (review: ReviewCard): HTMLElement => {
+    const rating = typeof review.rating === 'number' ? Math.round(review.rating) : 0;
+    const stars = Math.min(5, Math.max(0, rating));
+    const article = document.createElement('article');
+    article.className =
+      'border-line-base flex w-[min(100%,22rem)] shrink-0 snap-start flex-col gap-3 rounded-2xl border p-5 md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]';
+
+    const starLine = document.createElement('p');
+    starLine.className = 'text-brand-500';
+    starLine.setAttribute('aria-label', `${stars} out of 5 stars`);
+    starLine.textContent = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+
+    const quote = document.createElement('p');
+    quote.className = 'text-ink-base';
+    appendFormatted(quote, typeof review.text === 'string' ? review.text : '');
+
+    const byline = document.createElement('p');
+    byline.className = 'text-navy-600 mt-auto font-semibold';
+
+    const author = typeof review.author === 'string' ? review.author : '';
+    const authorUrl = safeHttps(review.authorUrl);
+    if (authorUrl) {
+      const link = document.createElement('a');
+      link.href = authorUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.className = 'hover:underline';
+      link.draggable = false;
+      link.textContent = author;
+      byline.append(link);
+    } else {
+      byline.append(document.createTextNode(author));
+    }
+
+    const when = document.createElement('span');
+    when.className = 'text-ink-muted block text-sm font-normal';
+    when.textContent = typeof review.relativeTime === 'string' ? review.relativeTime : '';
+    byline.append(when);
+
+    article.append(starLine, quote, byline);
+    return article;
+  };
+
+  const root = document.querySelector<HTMLElement>('[data-reviews]');
+  const track = root?.querySelector<HTMLElement>('[data-carousel-track]');
+  const carousel = root?.querySelector<HTMLElement>('[data-carousel]');
+  const summary = root?.querySelector<HTMLElement>('[data-reviews-summary]');
+  const attribution = root?.querySelector<HTMLElement>('[data-reviews-attribution]');
+
+  if (root && track && carousel) {
+    fetch('/api/reviews.php', { headers: { Accept: 'application/json' } })
+      .then((response) => {
+        if (!response.ok) throw new Error('reviews unavailable');
+        return response.json();
+      })
+      .then((data: { rating?: unknown; reviewCount?: unknown; reviews?: unknown }) => {
+        const reviews = Array.isArray(data.reviews) ? (data.reviews as ReviewCard[]) : [];
+        const cards = reviews.filter((review) => typeof review.text === 'string' && review.text !== '');
+        if (cards.length === 0) return;
+
+        for (const review of cards) track.append(renderCard(review));
+        carousel.hidden = false;
+
+        if (summary && typeof data.rating === 'number') {
+          const count = typeof data.reviewCount === 'number' ? data.reviewCount : cards.length;
+          summary.textContent = `${data.rating.toFixed(1)} out of 5 · ${count.toLocaleString()} Google reviews`;
+          summary.hidden = false;
+        }
+
+        if (attribution) attribution.hidden = false;
+        initCarousels();
+      })
+      .catch(() => {
+        // The Google links below stay available when the feed is not configured yet.
+      });
+  }
+</script>

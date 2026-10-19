@@ -1,5 +1,6 @@
 ---
-import { site } from '../../config/site';
+import { site, formatPageTitle, type ProviderProfile } from '../../config/site';
+import { treatments } from '../../data/treatments';
 
 export interface BreadcrumbEntry {
   name: string;
@@ -11,16 +12,114 @@ export interface FaqEntry {
   answer: string;
 }
 
-interface Props {
-  breadcrumbs?: BreadcrumbEntry[];
-  faqs?: FaqEntry[];
-  service?: { name: string; description?: string };
+export interface ServiceEntry {
+  name: string;
+  description?: string;
+  /** Site path for this service. Defaults to the current page. */
+  url?: string;
 }
 
-const { breadcrumbs, faqs, service } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  titleExact?: boolean;
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  breadcrumbs?: BreadcrumbEntry[];
+  faqs?: FaqEntry[];
+  service?: ServiceEntry;
+  /** Provider `id` when this page is that dentist's profile. */
+  profileId?: string;
+  pageType?: 'WebPage' | 'MedicalWebPage';
+}
+
+const {
+  title,
+  description = site.description,
+  titleExact = false,
+  image = site.defaultOgImage,
+  imageAlt = site.defaultOgImageAlt,
+  imageWidth = image === site.defaultOgImage ? site.defaultOgImageWidth : undefined,
+  imageHeight = image === site.defaultOgImage ? site.defaultOgImageHeight : undefined,
+  breadcrumbs,
+  faqs,
+  service,
+  profileId,
+  pageType = service ? 'MedicalWebPage' : 'WebPage',
+} = Astro.props;
+
+const pageTitle = formatPageTitle(title, titleExact);
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const abs = (path: string) => new URL(path, site.url).href;
 
 const businessId = `${site.url}/#business`;
-const abs = (path: string) => new URL(path, site.url).href;
+const websiteId = `${site.url}/#website`;
+const webpageId = `${canonical}#webpage`;
+const breadcrumbId = `${canonical}#breadcrumb`;
+const faqId = `${canonical}#faq`;
+
+const personId = (provider: ProviderProfile) => `${abs(provider.url)}#person`;
+
+const cities = (site.business.areaServed ?? []).map((name) => ({
+  '@type': 'City',
+  name,
+}));
+
+const logo = {
+  '@type': 'ImageObject',
+  url: abs(site.logo),
+  width: site.logoWidth,
+  height: site.logoHeight,
+};
+
+const businessImage = {
+  '@type': 'ImageObject',
+  url: abs(site.defaultOgImage),
+  width: site.defaultOgImageWidth,
+  height: site.defaultOgImageHeight,
+  caption: site.defaultOgImageAlt,
+};
+
+const sameAs = [
+  site.social.facebook,
+  site.social.instagram,
+  site.social.linkedin,
+  site.social.x,
+  site.social.youtube,
+  site.social.tiktok,
+].filter((url): url is string => Boolean(url));
+
+const providers = site.providers ?? [];
+const founder = providers.find((provider) => provider.founder);
+const employees = providers.filter((provider) => !provider.founder);
+
+const rootServices = treatments.filter((treatment) => !treatment.slug.includes('/'));
+
+const personNode = (provider: ProviderProfile) => ({
+  '@type': 'Person',
+  '@id': personId(provider),
+  name: provider.name,
+  ...(provider.honorificPrefix && { honorificPrefix: provider.honorificPrefix }),
+  ...(provider.honorificSuffix && { honorificSuffix: provider.honorificSuffix }),
+  jobTitle: provider.jobTitle,
+  url: abs(provider.url),
+  worksFor: { '@id': businessId },
+  ...(provider.description && { description: provider.description }),
+  ...(provider.alumniOf?.length && {
+    alumniOf: provider.alumniOf.map((name) => ({
+      '@type': 'EducationalOrganization',
+      name,
+    })),
+  }),
+  ...(provider.memberOf?.length && {
+    memberOf: provider.memberOf.map((name) => ({
+      '@type': 'Organization',
+      name,
+    })),
+  }),
+});
 
 const graph: Record<string, unknown>[] = [
   {
@@ -29,10 +128,14 @@ const graph: Record<string, unknown>[] = [
     name: site.name,
     legalName: site.legalName,
     description: site.description,
-    url: site.url,
-    telephone: site.business.phone,
+    url: abs('/'),
+    telephone: site.business.phoneHref,
     email: site.business.email,
+    image: [logo, businessImage],
+    logo,
     priceRange: site.business.priceRange,
+    currenciesAccepted: site.business.currenciesAccepted,
+    medicalSpecialty: site.business.medicalSpecialty,
     address: {
       '@type': 'PostalAddress',
       streetAddress: site.business.address.street,
@@ -48,22 +151,99 @@ const graph: Record<string, unknown>[] = [
         longitude: site.business.geo.longitude,
       },
     }),
-    openingHours: site.business.hours,
-    sameAs: Object.values(site.social).filter(Boolean),
+    ...(site.social.google && { hasMap: site.social.google }),
+    ...(site.business.schedule?.length && {
+      openingHoursSpecification: site.business.schedule.map((block) => ({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: block.days,
+        opens: block.opens,
+        closes: block.closes,
+      })),
+    }),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: site.business.phoneHref,
+      email: site.business.email,
+      contactType: 'customer service',
+      areaServed: 'US',
+      availableLanguage: 'English',
+    },
+    ...(cities.length && { areaServed: cities }),
+    ...(site.business.serviceArea && {
+      serviceArea: { '@type': 'Place', name: site.business.serviceArea },
+    }),
+    ...(sameAs.length && { sameAs }),
+    ...(founder && { founder: { '@id': personId(founder) } }),
+    ...(employees.length && {
+      employee: employees.map((provider) => ({ '@id': personId(provider) })),
+    }),
+    ...(rootServices.length && {
+      knowsAbout: rootServices.map((treatment) => treatment.name),
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Dental services',
+        itemListElement: rootServices.map((treatment) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: treatment.name,
+            description: treatment.description,
+            url: abs(`/${treatment.slug}/`),
+            provider: { '@id': businessId },
+          },
+        })),
+      },
+    }),
   },
+  ...providers.map(personNode),
   {
     '@type': 'WebSite',
-    '@id': `${site.url}/#website`,
-    url: site.url,
+    '@id': websiteId,
+    url: abs('/'),
     name: site.name,
+    description: site.description,
     publisher: { '@id': businessId },
     inLanguage: site.locale,
   },
 ];
 
+const profile = providers.find((provider) => provider.id === profileId);
+const serviceUrl = abs(service?.url ?? Astro.url.pathname);
+const serviceId = `${serviceUrl}#service`;
+
+const primaryImage = {
+  '@type': 'ImageObject',
+  url: abs(image),
+  ...(imageWidth && { width: imageWidth }),
+  ...(imageHeight && { height: imageHeight }),
+  ...(imageAlt && { caption: imageAlt }),
+};
+
+const webpage: Record<string, unknown> = {
+  '@type': pageType,
+  '@id': webpageId,
+  url: canonical,
+  name: pageTitle,
+  description,
+  isPartOf: { '@id': websiteId },
+  publisher: { '@id': businessId },
+  inLanguage: site.locale,
+  primaryImageOfPage: primaryImage,
+  about: profile
+    ? { '@id': personId(profile) }
+    : service
+      ? { '@id': serviceId }
+      : { '@id': businessId },
+};
+
+if (profile) webpage.mainEntity = { '@id': personId(profile) };
+else if (service) webpage.mainEntity = { '@id': serviceId };
+
 if (breadcrumbs?.length) {
+  webpage.breadcrumb = { '@id': breadcrumbId };
   graph.push({
     '@type': 'BreadcrumbList',
+    '@id': breadcrumbId,
     itemListElement: breadcrumbs.map((crumb, index) => ({
       '@type': 'ListItem',
       position: index + 1,
@@ -74,8 +254,13 @@ if (breadcrumbs?.length) {
 }
 
 if (faqs?.length) {
+  if (!webpage.mainEntity) webpage.mainEntity = { '@id': faqId };
+  else webpage.hasPart = { '@id': faqId };
   graph.push({
     '@type': 'FAQPage',
+    '@id': faqId,
+    url: canonical,
+    isPartOf: { '@id': webpageId },
     mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
@@ -87,12 +272,17 @@ if (faqs?.length) {
 if (service) {
   graph.push({
     '@type': 'Service',
+    '@id': serviceId,
     name: service.name,
     description: service.description,
+    url: serviceUrl,
+    serviceType: service.name,
     provider: { '@id': businessId },
-    areaServed: site.business.address.region,
+    ...(cities.length ? { areaServed: cities } : { areaServed: site.business.address.region }),
   });
 }
+
+graph.push(webpage);
 
 const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---

@@ -22,7 +22,7 @@ const currentPath = Astro.url.pathname;
 const positioned = sticky !== 'static';
 
 const ctaClass =
-  'inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-semibold tracking-wide text-white uppercase no-underline';
+  'inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-2 py-3.5 text-sm font-bold text-white uppercase no-underline xl:px-4';
 ---
 
 <header
@@ -42,18 +42,26 @@ const ctaClass =
       />
     </a>
 
-    <div class="flex items-center gap-3">
-      <div class="hidden items-center gap-4 lg:flex">
+    <div class="flex min-w-0 items-center gap-2 xl:gap-3">
+      <div class="hidden min-w-0 items-center gap-2 lg:flex xl:gap-4">
         <a
           href={`tel:${site.business.phoneHref}`}
-          class="text-navy-400 flex flex-col items-start leading-tight no-underline"
+          class="flex shrink-0 items-center gap-1.5 no-underline xl:gap-4"
         >
-          <span class="inline-flex items-center gap-2 text-lg font-semibold">
-            <Icon name="lucide:phone" class="text-brand-500 size-5" aria-hidden="true" />
-            {site.business.phone}
-          </span>
-          <span class="text-navy-400 pl-7 text-xs font-medium tracking-wide">
-            HOURS: 8:00am – 5:00pm
+          <Icon
+            name="lucide:phone"
+            class="text-brand-500 size-5 shrink-0 xl:size-8"
+            aria-hidden="true"
+          />
+          <span class="flex flex-col items-start leading-tight">
+            <span
+              class="text-navy-400 text-base leading-tight font-bold whitespace-nowrap xl:text-[24px] xl:leading-9"
+            >
+              {site.business.phone}
+            </span>
+            <span class="text-[12px] leading-tight whitespace-nowrap text-[#131313] xl:text-sm">
+              HOURS: {site.business.hours[0]}
+            </span>
           </span>
         </a>
 

@@ -1,24 +1,55 @@
 ---
+import { Image } from 'astro:assets';
 import Container from '../ui/Container.astro';
-import Section from '../ui/Section.astro';
 import { site, officeLinks } from '../../config/site';
 import { Icon } from 'astro-icon/components';
+import wash from '../../assets/scalloped-bg-blue.png';
+import photoOne from '../../assets/location-1.jpg';
+import photoTwo from '../../assets/location-2.jpg';
+import photoThree from '../../assets/location-3.jpg';
+
+const photos = [
+  { src: photoOne, alt: 'Treatment room at the Overland Park office' },
+  { src: photoTwo, alt: 'Reception at the Overland Park office' },
+  { src: photoThree, alt: 'Exterior of the Overland Park office' },
+];
 ---
 
-<Section background="muted" spacing="md">
-  <Container layout="row" gap="lg" class="md:items-center">
-    <div class="flex flex-col gap-4 md:w-3/5">
-      <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">
-        Overland Park, Kansas
-      </p>
-      <h2 class="text-brand-500 text-4xl font-semibold">Brand New Location!</h2>
+<section class="relative overflow-hidden py-section">
+  <Image
+    src={wash}
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover"
+    widths={[720, 1440]}
+    sizes="100vw"
+  />
+  <div class="absolute inset-0 bg-white/85" aria-hidden="true"></div>
+
+  <Container layout="row" gap="lg" class="relative md:items-center">
+    <div class="flex w-full flex-col gap-5 md:w-[26rem] md:shrink-0">
+      {
+        photos.map((photo) => (
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            class="h-25 w-full rounded-[5px] object-cover"
+            widths={[416, 832]}
+            sizes="(min-width: 768px) 416px, 100vw"
+          />
+        ))
+      }
+    </div>
+
+    <div class="flex min-w-0 flex-col gap-5">
+      <p class="text-navy-600 text-lg font-bold uppercase">Overland Park, Kansas</p>
+      <h2 class="text-brand-500 text-4xl font-bold">Brand New Location!</h2>
       <div class="flex flex-col gap-4">
         <p>
-          We’re excited to welcome you to our newest location in Overland Park, KS—bringing the
-          trusted care of Harman-Tinnel Complete Family Dentistry to a growing community of families
-          and professionals. Conveniently located and designed with your comfort in mind, our
-          Overland Park office offers the same full range of general and cosmetic dentistry services
-          that our patients know and love.
+          We’re excited to welcome you to our newest location in <strong>Overland Park, KS</strong
+          >—bringing the trusted care of Harman-Tinnel Complete Family Dentistry to a growing
+          community of families and professionals. Conveniently located and designed with your
+          comfort in mind, our Overland Park office offers the same full range of
+          <strong>general and cosmetic dentistry services</strong> that our patients know and love.
         </p>
         <p>
           Whether you’re looking for routine cleanings, preventive care, or a complete smile
@@ -29,21 +60,19 @@ import { Icon } from 'astro-icon/components';
           Schedule your appointment today and experience the Harman-Tinnel difference close to home.
         </p>
       </div>
+      <a
+        href={officeLinks.maps}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-navy-600 inline-flex items-start gap-3 no-underline"
+      >
+        <Icon name="lucide:map-pin" class="text-brand-500 mt-1 size-6 shrink-0" aria-hidden="true" />
+        <span class="font-semibold">
+          {site.business.address.street}<br />
+          {site.business.address.locality}, {site.business.address.region}{' '}
+          {site.business.address.postalCode}
+        </span>
+      </a>
     </div>
-
-    <a
-      href={officeLinks.maps}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="bg-surface-base text-navy-600 hover:border-brand-500 flex w-full flex-col gap-3 rounded-2xl p-6 no-underline shadow-md md:w-2/5"
-    >
-      <Icon name="lucide:map-pin" class="text-brand-500 size-8" aria-hidden="true" />
-      <span class="text-lg font-semibold">
-        {site.business.address.street}<br />
-        {site.business.address.locality}, {site.business.address.region}{' '}
-        {site.business.address.postalCode}
-      </span>
-      <span class="text-brand-700 text-sm font-semibold">Get directions</span>
-    </a>
   </Container>
-</Section>
+</section>

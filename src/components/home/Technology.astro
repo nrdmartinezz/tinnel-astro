@@ -1,6 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Container from '../ui/Container.astro';
-import Section from '../ui/Section.astro';
+import aligners from '../../assets/technology.jpg';
 
 const items = [
   {
@@ -14,13 +15,19 @@ const items = [
 ];
 ---
 
-<Section background="muted" spacing="md">
-  <Container layout="row" gap="lg" class="md:items-start">
-    <div class="flex flex-col gap-4 md:w-1/2">
-      <p class="text-navy-600 text-sm font-semibold tracking-[0.14em] uppercase">
-        Advanced Technology
-      </p>
-      <h2 class="text-brand-500 text-4xl font-semibold">Orthodontics of Tomorrow</h2>
+<section class="relative overflow-hidden py-section">
+  <Container layout="row" gap="lg" class="md:items-center">
+    <Image
+      src={aligners}
+      alt="Clear aligners used for orthodontic treatment"
+      class="h-[350px] w-full rounded-[10px] object-cover shadow-[0_0_5px_rgba(0,218,255,0.13)] md:w-[416px] md:shrink-0"
+      widths={[416, 720]}
+      sizes="(min-width: 768px) 416px, 100vw"
+    />
+
+    <div class="flex min-w-0 flex-col gap-5 md:flex-1">
+      <p class="text-navy-600 text-lg font-bold uppercase">Advanced Technology</p>
+      <h2 class="text-brand-500 text-4xl font-bold">Orthodontics of Tomorrow</h2>
       <p>
         At HT Complete Family Dentistry, we are excited to introduce HT Smile 3D, a revolutionary
         tool designed to enhance your dental care. This advanced technology allows us to visualize
@@ -29,34 +36,31 @@ const items = [
         plan effective treatments, and improve your overall dental health. With HT Smile 3D, you’ll
         experience a seamless blend of comfort and efficiency during your visits.
       </p>
-    </div>
 
-    <div class="flex w-full flex-col gap-3 md:w-1/2">
-      {
-        items.map((item) => (
-          <details class="group bg-surface-base rounded-xl shadow-sm">
-            <summary class="text-navy-600 flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 font-semibold">
-              {item.title}
-              <span
-                class="text-brand-500 text-2xl leading-none group-open:hidden"
-                aria-hidden="true"
-              >
-                +
-              </span>
-              <span
-                class="text-brand-500 hidden text-2xl leading-none group-open:inline"
-                aria-hidden="true"
-              >
-                –
-              </span>
-            </summary>
-            <p class="px-5 pb-5">{item.body}</p>
-          </details>
-        ))
-      }
+      <div class="flex flex-col">
+        {
+          items.map((item) => (
+            <details class="group border-brand-500 border-b-2">
+              <summary class="text-brand-500 flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-2.5 py-2.5 text-lg font-bold uppercase">
+                {item.title}
+                <span class="text-brand-500 text-xl leading-none group-open:hidden" aria-hidden="true">
+                  +
+                </span>
+                <span
+                  class="text-brand-500 hidden text-xl leading-none group-open:inline"
+                  aria-hidden="true"
+                >
+                  –
+                </span>
+              </summary>
+              <p class="px-2.5 pb-4">{item.body}</p>
+            </details>
+          ))
+        }
+      </div>
     </div>
   </Container>
-</Section>
+</section>
 
 <style>
   summary::-webkit-details-marker {
