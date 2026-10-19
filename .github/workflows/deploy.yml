@@ -1,8 +1,7 @@
-name: Deploy
+name: Deploy production
 
+# Manual only. Pushes to main deploy to staging, not here.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
