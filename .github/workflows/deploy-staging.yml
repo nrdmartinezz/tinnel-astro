@@ -1,0 +1,67 @@
+name: Deploy staging
+
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and upload to staging
+    runs-on: ubuntu-latest
+    environment: staging
+    env:
+      SITE_URL: ${{ vars.SITE_URL }}
+      ALLOW_INDEXING: ${{ vars.ALLOW_INDEXING }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check staging configuration
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PW: ${{ secrets.FTP_PW }}
+        run: |
+          test -n "$SITE_URL" || { echo "SITE_URL is empty"; exit 1; }
+          test -n "$FTP_HOST" || { echo "FTP_HOST is empty"; exit 1; }
+          test -n "$FTP_USER" || { echo "FTP_USER is empty"; exit 1; }
+          test -n "$FTP_PW" || { echo "FTP_PW is empty"; exit 1; }
+
+      # Gate: a type error or malformed frontmatter must never reach the server.
+      - run: npm run verify
+
+      - name: Install PHPMailer
+        run: composer install --no-dev --working-dir=public/api
+
+      - run: npm run build
+
+      - name: Write robots.txt
+        run: node scripts/write-robots.mjs
+
+      - name: FTP deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PW }}
+          protocol: ftps
+          local-dir: ./dist/
+          # The staging FTP account is rooted at the site document root.
+          server-dir: ./
+          # Keeps anything the server owns that the build does not produce.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            cgi-bin/**

@@ -140,8 +140,24 @@ export interface SiteConfig {
   consent: 'none' | 'banner';
 }
 
+/** Origin with no trailing slash. `SITE_URL` overrides this for staging deploys. */
+function siteOrigin() {
+  const configured = process.env.SITE_URL?.trim();
+  return configured ? configured.replace(/\/+$/, '') : 'https://drtinnel.com';
+}
+
+/**
+ * Staging sets `ALLOW_INDEXING` to false so the preview stays out of search.
+ * An empty value means indexable, which is the local and production default.
+ */
+export function allowIndexing() {
+  const value = process.env.ALLOW_INDEXING?.trim().toLowerCase() ?? '';
+  if (!value) return true;
+  return value === '1' || value === 'true' || value === 'yes' || value === 'on';
+}
+
 export const site: SiteConfig = {
-  url: 'https://drtinnel.com',
+  url: siteOrigin(),
   name: 'HT Complete Family Dentistry',
   legalName: 'Sarina Harman-Tinnel, DDS',
   tagline: 'Your Smile is Our Passion',

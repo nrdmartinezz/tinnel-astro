@@ -202,7 +202,9 @@ const writeReviewHref = site.googlePlaceId
       })
       .then((data: { rating?: unknown; reviewCount?: unknown; reviews?: unknown }) => {
         const reviews = Array.isArray(data.reviews) ? (data.reviews as ReviewCard[]) : [];
-        const cards = reviews.filter((review) => typeof review.text === 'string' && review.text !== '');
+        const cards = reviews.filter(
+          (review) => typeof review.text === 'string' && review.text !== '',
+        );
         if (cards.length === 0) return;
 
         for (const review of cards) track.append(renderCard(review));

@@ -15,7 +15,7 @@ const items = [
 ];
 ---
 
-<section class="relative overflow-hidden py-section">
+<section class="py-section relative overflow-hidden">
   <Container layout="row" gap="lg" class="md:items-center">
     <Image
       src={aligners}
@@ -43,7 +43,10 @@ const items = [
             <details class="group border-brand-500 border-b-2">
               <summary class="text-brand-500 flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 px-2.5 py-2.5 text-lg font-bold uppercase">
                 {item.title}
-                <span class="text-brand-500 text-xl leading-none group-open:hidden" aria-hidden="true">
+                <span
+                  class="text-brand-500 text-xl leading-none group-open:hidden"
+                  aria-hidden="true"
+                >
                   +
                 </span>
                 <span

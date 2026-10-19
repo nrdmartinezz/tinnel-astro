@@ -6,9 +6,12 @@ import tailwindcss from '@tailwindcss/vite';
 
 const EXCLUDED_FROM_SITEMAP = ['/thank-you/', '/styleguide/'];
 
+/** Staging deploys set SITE_URL. Local and production builds keep the live domain. */
+const siteUrl = (process.env.SITE_URL || 'https://drtinnel.com').trim().replace(/\/+$/, '');
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://drtinnel.com',
+  site: siteUrl,
   output: 'static',
   trailingSlash: 'always',
   build: { format: 'directory' },
@@ -24,5 +27,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      'process.env.SITE_URL': JSON.stringify(siteUrl),
+      'process.env.ALLOW_INDEXING': JSON.stringify(process.env.ALLOW_INDEXING ?? ''),
+    },
   },
 });

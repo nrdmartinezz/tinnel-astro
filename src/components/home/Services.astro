@@ -86,10 +86,7 @@ const services: { title: string; href: string; image: ImageMetadata; alt: string
         {
           services.map((service) => (
             <li>
-              <a
-                href={service.href}
-                class="group flex flex-col items-center gap-3 no-underline"
-              >
+              <a href={service.href} class="group flex flex-col items-center gap-3 no-underline">
                 <Image
                   src={service.image}
                   alt={service.alt}

@@ -22,7 +22,9 @@ const linkClass =
       widths={[800, 1400, 2000]}
       sizes="100vw"
     />
-    <div class="px-gutter relative z-10 flex min-h-[34rem] items-end pt-10 pb-16 md:min-h-[45rem] md:pt-16">
+    <div
+      class="px-gutter relative z-10 flex min-h-[34rem] items-end pt-10 pb-16 md:min-h-[45rem] md:pt-16"
+    >
       <div
         class="relative w-full max-w-[52rem] overflow-hidden rounded-[14px] bg-white px-6 pt-10 pb-8 md:px-9 md:pt-12"
       >
@@ -30,7 +32,8 @@ const linkClass =
           class="pointer-events-none absolute inset-0 bg-cover opacity-[0.16]"
           style={`background-image: url('${scallop.src}')`}
           aria-hidden="true"
-        ></div>
+        >
+        </div>
         <div class="relative flex flex-col gap-3">
           <h1 class="text-navy-600 text-4xl font-bold md:text-5xl">Thank You For Reaching Out!</h1>
           <p class="text-base leading-6 text-[#131313]">

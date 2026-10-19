@@ -1,5 +1,5 @@
 ---
-import { site, formatPageTitle, twitterHandle } from '../../config/site';
+import { site, allowIndexing, formatPageTitle, twitterHandle } from '../../config/site';
 
 interface Props {
   title?: string;
@@ -38,21 +38,17 @@ const ogAlt = imageAlt ?? (usingDefaultImage ? site.defaultOgImageAlt : site.nam
 const ogWidth = imageWidth ?? (usingDefaultImage ? site.defaultOgImageWidth : undefined);
 const ogHeight = imageHeight ?? (usingDefaultImage ? site.defaultOgImageHeight : undefined);
 const twitterSite = twitterHandle();
+const robots =
+  noindex || !allowIndexing()
+    ? 'noindex, nofollow'
+    : 'index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large';
 ---
 
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 
-{noindex && <meta name="robots" content="noindex, nofollow" />}
-{
-  !noindex && (
-    <meta
-      name="robots"
-      content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
-    />
-  )
-}
+<meta name="robots" content={robots} />
 
 <meta property="og:type" content={type} />
 <meta property="og:site_name" content={site.name} />

@@ -15,7 +15,7 @@ const photos = [
 ];
 ---
 
-<section class="relative overflow-hidden py-section">
+<section class="py-section relative overflow-hidden">
   <Image
     src={wash}
     alt=""
@@ -66,7 +66,11 @@ const photos = [
         rel="noopener noreferrer"
         class="text-navy-600 inline-flex items-start gap-3 no-underline"
       >
-        <Icon name="lucide:map-pin" class="text-brand-500 mt-1 size-6 shrink-0" aria-hidden="true" />
+        <Icon
+          name="lucide:map-pin"
+          class="text-brand-500 mt-1 size-6 shrink-0"
+          aria-hidden="true"
+        />
         <span class="font-semibold">
           {site.business.address.street}<br />
           {site.business.address.locality}, {site.business.address.region}{' '}
