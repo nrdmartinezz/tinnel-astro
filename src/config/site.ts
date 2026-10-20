@@ -253,7 +253,7 @@ export const site: SiteConfig = {
 
   analytics: {
     logdash: '',
-    ga4: '',
+    ga4: 'G-99S6Y1L5R5',
     gtm: '',
     metaPixel: '',
     bingUet: '',

@@ -1,0 +1,137 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import Container from '../components/ui/Container.astro';
+import Prose from '../components/ui/Prose.astro';
+import Reviews from '../components/home/Reviews.astro';
+import LogoStrip from '../components/home/LogoStrip.astro';
+import ContactBand from '../components/home/ContactBand.astro';
+import ClosingCta from '../components/home/ClosingCta.astro';
+import BlogHero from '../components/blog/BlogHero.astro';
+import { calendarDate, formatDate, getPublished, moreRecent, type Entry } from '../lib/posts';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const entries = await getPublished();
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry, all: entries },
+  }));
+};
+
+interface Props {
+  entry: Entry;
+  all: Entry[];
+}
+
+const { entry, all } = Astro.props;
+const { Content } = await render(entry);
+const suggestions = moreRecent(all, entry);
+const published = calendarDate(entry.data.publishDate);
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Dental Blog', href: '/dental-blog/' },
+  { name: entry.data.title, href: `/${entry.id}/` },
+];
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  type="article"
+  image={entry.data.heroImage?.src}
+  imageAlt={entry.data.heroImageAlt}
+  imageWidth={entry.data.heroImage?.width}
+  imageHeight={entry.data.heroImage?.height}
+  publishedTime={entry.data.publishDate.toISOString()}
+  modifiedTime={entry.data.updatedDate?.toISOString()}
+  breadcrumbs={breadcrumbs}
+>
+  {
+    entry.data.heroImage && (
+      <BlogHero
+        image={entry.data.heroImage}
+        imageAlt={entry.data.heroImageAlt ?? ''}
+        kicker="Family Dentist Serving Overland Park / Kansas City"
+        title={entry.data.title}
+        dateLabel={formatDate(entry.data.publishDate, 'long')}
+        dateTime={published}
+      />
+    )
+  }
+
+  <Section background="base" class="pt-28 text-[#131313]">
+    <Container gap="lg">
+      <nav aria-label="Breadcrumb">
+        <ol class="text-brand-500 flex flex-wrap items-center gap-2 text-sm font-semibold">
+          {
+            breadcrumbs.map((crumb, index) => (
+              <li class="inline-flex items-center gap-2">
+                {index > 0 && <span aria-hidden="true">/</span>}
+                {index < breadcrumbs.length - 1 ? (
+                  <a href={crumb.href} class="text-brand-500 no-underline">
+                    {crumb.name}
+                  </a>
+                ) : (
+                  <span aria-current="page">{crumb.name}</span>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+      <Prose>
+        <Content />
+      </Prose>
+    </Container>
+  </Section>
+
+  {
+    suggestions.length > 0 && (
+      <Section background="base" class="text-[#131313]">
+        <Container gap="lg">
+          <h2 class="text-navy-600 text-3xl font-bold">Recent Posts</h2>
+          <ul class="grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {suggestions.map((item) => (
+              <li class="flex">
+                <a
+                  href={`/${item.id}/`}
+                  class="border-line-base hover:border-brand-600 focus-visible:border-brand-600 flex h-full w-full flex-col overflow-hidden rounded-lg border bg-white no-underline transition-colors"
+                >
+                  {item.data.heroImage && (
+                    <Image
+                      src={item.data.heroImage}
+                      alt={item.data.heroImageAlt ?? ''}
+                      widths={[480, 768]}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      class="aspect-[3/2] w-full object-cover"
+                    />
+                  )}
+                  <span class="flex flex-col gap-3 p-6">
+                    <time
+                      class="text-ink-muted text-sm"
+                      datetime={calendarDate(item.data.publishDate)}
+                    >
+                      {formatDate(item.data.publishDate)}
+                    </time>
+                    <span class="text-navy-600 text-xl font-semibold text-balance">
+                      {item.data.title}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+    )
+  }
+
+  <Reviews />
+  <LogoStrip />
+  <ContactBand />
+  <ClosingCta />
+</BaseLayout>

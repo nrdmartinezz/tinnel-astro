@@ -94,8 +94,15 @@ const { class: className, ...rest } = Astro.props;
     padding: 0;
   }
 
-  .prose-root :global(img) {
+  .prose-root :global(img),
+  .prose-root :global(iframe) {
     border-radius: var(--radius-md);
+  }
+
+  .prose-root :global(iframe) {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: 0;
   }
 
   .prose-root :global(hr) {

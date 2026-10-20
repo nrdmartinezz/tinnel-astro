@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import scallop from '../../assets/scalloped-bg-blue.png';
+
+interface Props {
+  image: ImageMetadata;
+  /** Empty when the photo is only a banner behind the title card. */
+  imageAlt?: string;
+  kicker: string;
+  title: string;
+  dateLabel?: string;
+  dateTime?: string;
+}
+
+const { image, imageAlt = '', kicker, title, dateLabel, dateTime } = Astro.props;
+---
+
+<section class="relative z-10 min-h-[34rem] md:min-h-[45rem]">
+  <Image
+    src={image}
+    alt={imageAlt}
+    class="absolute inset-0 h-full w-full object-cover"
+    widths={[800, 1400, 2000]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="px-gutter relative z-10 flex min-h-[34rem] items-end md:min-h-[45rem]">
+    <div
+      class="relative -mb-20 w-full max-w-[52rem] overflow-hidden rounded-[14px] bg-white px-6 pt-10 pb-8 md:px-9 md:pt-12"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 bg-cover opacity-[0.16]"
+        style={`background-image: url('${scallop.src}')`}
+        aria-hidden="true"
+      >
+      </div>
+      <div class="relative flex flex-col gap-3">
+        <h1 class="text-brand-500 text-lg font-semibold uppercase">{kicker}</h1>
+        <h2 class="text-navy-600 text-4xl font-bold text-balance md:text-5xl">{title}</h2>
+        {
+          dateLabel && dateTime && (
+            <p class="text-ink-muted text-base">
+              <time datetime={dateTime}>{dateLabel}</time>
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,142 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { Image } from 'astro:assets';
+import heroImage from '../../assets/practice/heroes/2025-05-htcfd-hero-bg.jpg';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Container from '../../components/ui/Container.astro';
+import Reviews from '../../components/home/Reviews.astro';
+import LogoStrip from '../../components/home/LogoStrip.astro';
+import ContactBand from '../../components/home/ContactBand.astro';
+import ClosingCta from '../../components/home/ClosingCta.astro';
+import BlogHero from '../../components/blog/BlogHero.astro';
+import { calendarDate, formatDate, getPublished, type Entry } from '../../lib/posts';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const entries = await getPublished();
+  return paginate(entries, { pageSize: 12 });
+};
+
+interface Props {
+  page: Page<Entry>;
+}
+
+const { page } = Astro.props;
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Dental Blog', href: '/dental-blog/' },
+];
+
+const description =
+  'Dental care articles from HT Complete Family Dentistry in Overland Park, on children’s dentistry, Invisalign, and everyday oral health.';
+---
+
+<BaseLayout
+  title="Dental Blog"
+  description={description}
+  image={heroImage.src}
+  imageAlt="HT Complete Family Dentistry"
+  imageWidth={heroImage.width}
+  imageHeight={heroImage.height}
+  breadcrumbs={breadcrumbs}
+>
+  <BlogHero
+    image={heroImage}
+    kicker="Family Dentist Serving Overland Park / Kansas City"
+    title="Dental Blog"
+  />
+
+  <Section background="base" class="pt-28 text-[#131313]">
+    <Container gap="sm">
+      <nav aria-label="Breadcrumb">
+        <ol class="text-brand-500 flex flex-wrap items-center gap-2 text-sm font-semibold">
+          {
+            breadcrumbs.map((crumb, index) => (
+              <li class="inline-flex items-center gap-2">
+                {index > 0 && <span aria-hidden="true">/</span>}
+                {index < breadcrumbs.length - 1 ? (
+                  <a href={crumb.href} class="text-brand-500 no-underline">
+                    {crumb.name}
+                  </a>
+                ) : (
+                  <span aria-current="page">{crumb.name}</span>
+                )}
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+    </Container>
+    <Container gap="lg">
+      <ul class="grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          page.data.map((entry) => (
+            <li class="flex">
+              <a
+                href={`/${entry.id}/`}
+                class="border-line-base hover:border-brand-600 focus-visible:border-brand-600 flex h-full w-full flex-col overflow-hidden rounded-lg border bg-white no-underline transition-colors"
+              >
+                {entry.data.heroImage && (
+                  <Image
+                    src={entry.data.heroImage}
+                    alt={entry.data.heroImageAlt ?? ''}
+                    widths={[480, 768]}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    class="aspect-[3/2] w-full object-cover"
+                  />
+                )}
+                <span class="flex flex-col gap-3 p-6">
+                  <time
+                    class="text-ink-muted text-sm"
+                    datetime={calendarDate(entry.data.publishDate)}
+                  >
+                    {formatDate(entry.data.publishDate)}
+                  </time>
+                  <span class="text-navy-600 text-xl font-semibold text-balance">
+                    {entry.data.title}
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        (page.url.prev || page.url.next) && (
+          <nav class="flex w-full items-center justify-between gap-4" aria-label="Pagination">
+            {page.url.prev ? (
+              <a
+                href={page.url.prev}
+                class="text-brand-700 inline-flex min-h-11 items-center font-semibold"
+              >
+                ← Newer
+              </a>
+            ) : (
+              <span />
+            )}
+            <p class="text-ink-muted text-sm">
+              Page {page.currentPage} of {page.lastPage}
+            </p>
+            {page.url.next ? (
+              <a
+                href={page.url.next}
+                class="text-brand-700 inline-flex min-h-11 items-center font-semibold"
+              >
+                Older →
+              </a>
+            ) : (
+              <span />
+            )}
+          </nav>
+        )
+      }
+    </Container>
+  </Section>
+
+  <Reviews />
+  <LogoStrip />
+  <ContactBand />
+  <ClosingCta />
+</BaseLayout>

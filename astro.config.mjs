@@ -15,6 +15,9 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   build: { format: 'directory' },
+  redirects: {
+    '/invisalign-and-comprehensive-dental-care/': '/comprehensive-dental-care-and-invisalign/',
+  },
   integrations: [
     mdx(),
     icon(),
