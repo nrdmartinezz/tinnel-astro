@@ -4,7 +4,7 @@ import Container from '../ui/Container.astro';
 import Field from '../ui/Field.astro';
 import FormMessage from '../ui/FormMessage.astro';
 import SocialLinks from '../layout/SocialLinks.astro';
-import { site, officeLinks } from '../../config/site';
+import { site } from '../../config/site';
 import hero from '../../assets/hero.jpg';
 
 const action = site.formEndpoint || '';
@@ -113,12 +113,7 @@ const helpOptions = [
 
       <p class="text-ink-muted mt-4 text-center text-sm">
         Prefer to schedule directly?
-        <a
-          href={officeLinks.appointment}
-          class="text-brand-700 font-semibold"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="/appointment-request-info/" class="text-brand-700 font-semibold">
           Request an appointment online
         </a>
       </p>

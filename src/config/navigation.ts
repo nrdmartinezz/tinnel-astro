@@ -159,8 +159,7 @@ export const navigation: NavigationConfig = {
     { label: 'Blog', href: '/dental-blog/' },
     {
       label: 'Request Appointment',
-      href: officeLinks.appointment,
-      external: true,
+      href: '/appointment-request-info/',
     },
     { label: 'Pay Online', href: officeLinks.portal, external: true },
     { label: 'Patient Portal', href: officeLinks.portal, external: true },
@@ -168,7 +167,7 @@ export const navigation: NavigationConfig = {
     { label: 'Contact Us', href: '/contact/' },
   ],
 
-  cta: { label: 'Request Appointment', href: officeLinks.appointment },
+  cta: { label: 'Request Appointment', href: '/appointment-request-info/' },
 
   footer: [
     {

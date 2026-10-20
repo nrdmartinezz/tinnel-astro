@@ -55,7 +55,7 @@ export const practicePages: Treatment[] = [
         image: 'patient-information-body-overland-park.jpg',
         imageAlt: 'The team at HT Complete Family Dentistry',
         imageSide: 'start',
-        button: { label: 'Request an Appointment', href: appointment },
+        button: { label: 'Request an Appointment', href: '/appointment-request-info/' },
       },
       {
         type: 'split',
@@ -94,7 +94,7 @@ export const practicePages: Treatment[] = [
         image: 'dr-tinnel-full-team.jpg',
         imageAlt: 'Dr. Sarina Harman-Tinnel with the dental team',
         imageSide: 'start',
-        button: { label: 'Request an Appointment', href: appointment },
+        button: { label: 'Request an Appointment', href: '/appointment-request-info/' },
       },
       {
         type: 'split',
@@ -288,7 +288,7 @@ export const practicePages: Treatment[] = [
         image: 'patient-testimonials-kansas-city.jpg',
         imageAlt: 'Patients welcomed at HT Complete Family Dentistry',
         imageSide: 'start',
-        button: { label: 'Request an Appointment', href: appointment },
+        button: { label: 'Request an Appointment', href: '/appointment-request-info/' },
       },
       {
         type: 'split',
@@ -508,7 +508,7 @@ export const practicePages: Treatment[] = [
           'Thanks for stopping by our website! Do you have a question about a dental procedure or office policy? Do you need to know if we accept your dental insurance? No matter your question or concern, we’re here to help. Give us a call at <a href="tel:+19139620036">913-962-0036</a> or fill out the contact form below and one of our friendly team members will be happy to help you!',
           'If you would like to schedule an appointment please call our office or click the Request Appointment button below.',
         ],
-        button: { label: 'Request Appointment', href: appointment },
+        button: { label: 'Request Appointment', href: '/appointment-request-info/' },
       },
       {
         type: 'split',
