@@ -18,7 +18,10 @@ const isCurrent = (href: string) =>
   href === '/' ? currentPath === '/' : href.startsWith('/') && currentPath.startsWith(href);
 
 const linkClass =
-  'flex min-h-12 items-center gap-3 rounded-md px-2 text-base no-underline text-ink-base aria-[current=page]:text-ink-brand aria-[current=page]:font-medium';
+  'flex min-h-12 w-full items-center gap-3 rounded-md px-2 text-left text-base no-underline text-ink-base aria-[current=page]:text-ink-brand aria-[current=page]:font-medium';
+
+const accordionClass =
+  'mobile-accordion flex min-h-12 items-center gap-3 rounded-md px-2 text-left text-base font-semibold text-ink-base hover:bg-neutral-100';
 
 const externalAttrs = (link: { external?: boolean }) =>
   link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
@@ -90,30 +93,34 @@ const externalAttrs = (link: { external?: boolean }) =>
 
           return (
             <li class="border-line-base border-b">
-              <div class="flex items-center">
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    aria-current={isCurrent(item.href) ? 'page' : undefined}
-                    class={`${linkClass} flex-1`}
-                    {...externalAttrs(item)}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <span class={`${linkClass} flex-1 font-semibold`}>{item.label}</span>
-                )}
-
+              <div class="relative flex min-h-12 items-center">
+                {
+                  item.href && (
+                    <a
+                      href={item.href}
+                      aria-current={isCurrent(item.href) ? 'page' : undefined}
+                      class="text-ink-base aria-[current=page]:text-ink-brand relative z-10 inline-flex min-h-12 items-center rounded-md px-2 text-base no-underline aria-[current=page]:font-medium"
+                      {...externalAttrs(item)}
+                    >
+                      {item.label}
+                    </a>
+                  )
+                }
                 <button
                   type="button"
-                  class="mobile-accordion inline-flex size-12 shrink-0 items-center justify-center rounded-md hover:bg-neutral-100"
+                  class:list={[
+                    accordionClass,
+                    item.href
+                      ? 'absolute inset-0 z-0 justify-end font-normal'
+                      : 'w-full justify-between',
+                  ]}
                   aria-expanded="false"
                   aria-controls={panelId}
                 >
-                  <span class="sr-only">Show {item.label} links</span>
+                  {item.href ? <span class="sr-only">Show {item.label} links</span> : item.label}
                   <Icon
                     name="lucide:chevron-down"
-                    class="size-5 transition-transform"
+                    class="size-5 shrink-0 transition-transform"
                     aria-hidden="true"
                   />
                 </button>
