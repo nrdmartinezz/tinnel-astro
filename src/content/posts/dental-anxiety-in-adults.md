@@ -1,11 +1,11 @@
 ---
-title: "Breaking the Cycle of Dental Anxiety in Adults with Harman-Tinnel Complete Family Dentistry"
-description: "Overcome dental anxiety with Harman-Tinnel Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 for comfortable, compassionate care today."
+title: 'Breaking the Cycle of Dental Anxiety in Adults with Harman-Tinnel Complete Family Dentistry'
+description: 'Overcome dental anxiety with Harman-Tinnel Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 for comfortable, compassionate care today.'
 publishDate: 2026-06-04
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/dental-anxiety-young-woman.jpg
-heroImageAlt: "Anxious young woman at orthodontics appointment"
+heroImageAlt: 'Anxious young woman at orthodontics appointment'
 ---
 
 ## Breaking the Cycle of Dental Anxiety in Adults with Harman-Tinnel Complete Family Dentistry

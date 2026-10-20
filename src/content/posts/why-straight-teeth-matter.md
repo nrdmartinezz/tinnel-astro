@@ -1,11 +1,11 @@
 ---
-title: "Why Straight Teeth Matter"
-description: "Several patients pursue orthodontic treatment at HT Complete Family Dentistry so they can have an aesthetic, straight smile, but straight teeth provide…"
+title: 'Why Straight Teeth Matter'
+description: 'Several patients pursue orthodontic treatment at HT Complete Family Dentistry so they can have an aesthetic, straight smile, but straight teeth provide…'
 publishDate: 2023-04-17
-category: "Invisalign"
+category: 'Invisalign'
 tags: []
 heroImage: ../../assets/blog/why-straight-teeth-matter-4.jpg
-heroImageAlt: "Why Straight Teeth Matter"
+heroImageAlt: 'Why Straight Teeth Matter'
 ---
 
 Several patients pursue orthodontic treatment at HT Complete Family Dentistry so they can have an aesthetic, straight smile, but straight teeth provide more than just a pretty smile. Your teeth are meant to line-up and fit together, so they can properly do their job. When you have crooked teeth or misaligned jaws, your teeth can’t properly do their job. This can lead to a variety of oral health issues.

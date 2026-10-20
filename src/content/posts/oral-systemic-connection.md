@@ -1,11 +1,11 @@
 ---
-title: "Understanding the Oral-Systemic Connection: Your Health Starts in Your Mouth"
-description: "Discover how oral health impacts overall wellness at Harman-Tinnel Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 today!"
+title: 'Understanding the Oral-Systemic Connection: Your Health Starts in Your Mouth'
+description: 'Discover how oral health impacts overall wellness at Harman-Tinnel Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 today!'
 publishDate: 2026-06-20
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/teeth-cleaning-m.jpg
-heroImageAlt: "teeth-cleaning-overland-park"
+heroImageAlt: 'teeth-cleaning-overland-park'
 ---
 
 ## Understanding the Oral-Systemic Connection: Your Health Starts in Your Mouth

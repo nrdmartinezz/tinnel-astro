@@ -1,14 +1,14 @@
 ---
-title: "Conquering Dental Anxiety as an Adult: Regain Control of Your Oral Health with HT Complete Family Dentistry"
-description: "Struggling with dental fear? HT Complete Family Dentistry in Overland Park, KS offers gentle care. Call 913-962-0036 to schedule your visit today."
+title: 'Conquering Dental Anxiety as an Adult: Regain Control of Your Oral Health with HT Complete Family Dentistry'
+description: 'Struggling with dental fear? HT Complete Family Dentistry in Overland Park, KS offers gentle care. Call 913-962-0036 to schedule your visit today.'
 publishDate: 2025-12-15
-category: "Dental Care"
-tags: ["dental anxiety treatment","orthodontics"]
+category: 'Dental Care'
+tags: ['dental anxiety treatment', 'orthodontics']
 heroImage: ../../assets/blog/dental-anxiety-young-woman.jpg
-heroImageAlt: "Anxious young woman at orthodontics appointment"
+heroImageAlt: 'Anxious young woman at orthodontics appointment'
 ---
 
-Dental anxiety affects many adults, often standing in the way of maintaining a healthy, confident smile. According to a notable study published in the *Journal of the American Dental Association*, nearly **73% of adults** experience some degree of fear when it comes to dental visits, with almost 27% describing their anxiety as severe. At **HT Complete Family Dentistry** in Overland Park, KS, Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling understand how challenging this can be. We're committed to creating a welcoming, family-friendly environment where your comfort and peace of mind are our top priorities.
+Dental anxiety affects many adults, often standing in the way of maintaining a healthy, confident smile. According to a notable study published in the _Journal of the American Dental Association_, nearly **73% of adults** experience some degree of fear when it comes to dental visits, with almost 27% describing their anxiety as severe. At **HT Complete Family Dentistry** in Overland Park, KS, Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling understand how challenging this can be. We're committed to creating a welcoming, family-friendly environment where your comfort and peace of mind are our top priorities.
 
 ### Breaking the Cycle of Dental Fear
 

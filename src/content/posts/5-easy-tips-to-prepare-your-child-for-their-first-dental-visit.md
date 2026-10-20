@@ -1,11 +1,11 @@
 ---
-title: "5 Easy Tips to Prepare Your Child for Their First Dental Visit"
-description: "Is it time for your child’s first dental appointment? Are you feeling nervous about their first appointment? While your child’s first dental appointment…"
+title: '5 Easy Tips to Prepare Your Child for Their First Dental Visit'
+description: 'Is it time for your child’s first dental appointment? Are you feeling nervous about their first appointment? While your child’s first dental appointment…'
 publishDate: 2023-05-30
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/5-tips-child-dental-HT.jpg
-heroImageAlt: "5 Easy Tips to Prepare Your Child for Their First Dental Visit"
+heroImageAlt: '5 Easy Tips to Prepare Your Child for Their First Dental Visit'
 ---
 
 Is it time for your child’s first dental appointment? Are you feeling nervous about their first appointment? While your child’s first dental appointment can seem nerve-wracking, it doesn't have to be! Here are 5 Easy Tips to Prepare Your Child for Their First Dental Visit from [Dr. Tinnel](/our-practice/meet-dr-tinnel/) and [Dr. Prinz](/our-practice/). These 5 simple steps can help you and your child feel comfortable during their first appointment!

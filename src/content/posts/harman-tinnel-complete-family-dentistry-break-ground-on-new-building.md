@@ -1,11 +1,11 @@
 ---
-title: "Harman Tinnel Complete Family Dentistry Break Ground on New Building"
-description: "New HTCFD Office Coming Soon We have some great news, we are moving! Yes, that’s right, HT Complete Family Dentistry is thrilled to share that we are…"
+title: 'Harman Tinnel Complete Family Dentistry Break Ground on New Building'
+description: 'New HTCFD Office Coming Soon We have some great news, we are moving! Yes, that’s right, HT Complete Family Dentistry is thrilled to share that we are…'
 publishDate: 2022-11-28
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/Harman-Tinnel-Complete-Family-Dentistry-Break-Ground-on-New-Building-1.png
-heroImageAlt: "Harman Tinnel Complete Family Dentistry Break Ground on New Building"
+heroImageAlt: 'Harman Tinnel Complete Family Dentistry Break Ground on New Building'
 ---
 
 ## Building More Than Great Smiles

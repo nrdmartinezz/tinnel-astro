@@ -1,11 +1,11 @@
 ---
-title: "Baby Teeth: Small but Mighty – Why Primary Teeth Are Essential for Your Child’s Health"
+title: 'Baby Teeth: Small but Mighty – Why Primary Teeth Are Essential for Your Child’s Health'
 description: "Learn why your child's baby teeth are essential at HT Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 to book an appointment today."
 publishDate: 2026-01-29
-category: "Dental Care"
-tags: ["baby teeth","child orthodontics","oral health"]
+category: 'Dental Care'
+tags: ['baby teeth', 'child orthodontics', 'oral health']
 heroImage: ../../assets/blog/young-girl-smiling-with-fingerpaint.jpg
-heroImageAlt: "Smiling young girl with thumbs up fingerpainting"
+heroImageAlt: 'Smiling young girl with thumbs up fingerpainting'
 ---
 
 At HT Complete Family Dentistry, we often hear parents say, “They’re just baby teeth, they’ll fall out eventually.” While it’s true that primary teeth are temporary, dismissing their importance can have lasting effects on your child’s oral and overall health. Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling want you to know that these first teeth play vital roles far beyond their brief appearance.

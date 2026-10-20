@@ -1,11 +1,11 @@
 ---
-title: "The Vital Link Between Oral Health and Your Overall Wellness"
-description: "Learn how your oral health affects your body. HT Complete Family Dentistry in Overland Park, KS is here to help. Call 913-962-0036 today!"
+title: 'The Vital Link Between Oral Health and Your Overall Wellness'
+description: 'Learn how your oral health affects your body. HT Complete Family Dentistry in Overland Park, KS is here to help. Call 913-962-0036 today!'
 publishDate: 2025-11-16
-category: "Dental Care"
-tags: ["oral health","orthodontics","wellness"]
+category: 'Dental Care'
+tags: ['oral health', 'orthodontics', 'wellness']
 heroImage: ../../assets/blog/smiling-healthy-young-woman-hiking.jpg
-heroImageAlt: "Smiling and healthy young woman on hike"
+heroImageAlt: 'Smiling and healthy young woman on hike'
 ---
 
 At HT Complete Family Dentistry in Overland Park, KS, we know that a healthy smile means more than just looking good—it’s a key part of your total health. While many people seek orthodontic care for straighter teeth, maintaining excellent oral health plays a crucial role in preventing and managing serious health conditions. This connection between your mouth and body is often called the **oral-systemic link**, and it’s something our team—Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling—takes seriously.
@@ -66,4 +66,4 @@ At HT Complete Family Dentistry, we’re passionate about helping you achieve a 
 
 **Ready to take the next step toward a healthier smile and body?** Contact HT Complete Family Dentistry today at **913-962-0036** to schedule your consultation. Or visit us online at [https://www.drtinnel.com/contact](/contact/) to book an appointment.
 
-*Your Smile is Our Passion—let us help you protect it for life!*
+_Your Smile is Our Passion—let us help you protect it for life!_

@@ -1,11 +1,11 @@
 ---
-title: "5 Ways Oral Hygiene Impacts Your Child’s Overall Well-Being"
-description: "At HT Complete Family Dentistry , we know teaching and instilling good oral hygiene habits in your children can be difficult, but these habits are…"
+title: '5 Ways Oral Hygiene Impacts Your Child’s Overall Well-Being'
+description: 'At HT Complete Family Dentistry , we know teaching and instilling good oral hygiene habits in your children can be difficult, but these habits are…'
 publishDate: 2023-09-28
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/HT-Child-Oral-Hygiene.jpg
-heroImageAlt: "5 Ways Oral Hygiene Impacts Your Child’s Overall Well-Being"
+heroImageAlt: '5 Ways Oral Hygiene Impacts Your Child’s Overall Well-Being'
 ---
 
 At [HT Complete Family Dentistry](/our-practice/), we know teaching and instilling good oral hygiene habits in your children can be difficult, but these habits are necessary for more than just clean and happy teeth. Good oral hygiene can protect your little one from various overall health concerns. Knowing how to properly care for your child’s teeth, and bringing them into our office for regular check-ups with Dr. Tinnel and Dr. Prinz will help protect your child from various overall health concerns. We're here to shine a light on 5 Ways Oral Hygiene Impacts Your Child’s Overall Well-Being.

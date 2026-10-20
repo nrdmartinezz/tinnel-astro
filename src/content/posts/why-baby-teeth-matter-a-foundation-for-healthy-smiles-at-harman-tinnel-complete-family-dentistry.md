@@ -1,11 +1,11 @@
 ---
-title: "Why Baby Teeth Matter: A Foundation for Healthy Smiles at Harman-Tinnel Complete Family Dentistry"
-description: "Learn why baby teeth are essential at Harman-Tinnel Complete Family Dentistry, Overland Park, KS. Call 913-962-0036 for expert family dental care."
+title: 'Why Baby Teeth Matter: A Foundation for Healthy Smiles at Harman-Tinnel Complete Family Dentistry'
+description: 'Learn why baby teeth are essential at Harman-Tinnel Complete Family Dentistry, Overland Park, KS. Call 913-962-0036 for expert family dental care.'
 publishDate: 2026-04-04
-category: "Dental Care"
-tags: ["baby teeth","child dental care","healthy smiles"]
+category: 'Dental Care'
+tags: ['baby teeth', 'child dental care', 'healthy smiles']
 heroImage: ../../assets/blog/happy-baby-smiling-baby-teeth.jpg
-heroImageAlt: "Extremely happy baby smiling with baby teeth"
+heroImageAlt: 'Extremely happy baby smiling with baby teeth'
 ---
 
 At **Harman-Tinnel Complete Family Dentistry** in Overland Park, KS, we understand that your child’s dental health begins long before their adult teeth emerge. Baby teeth, or primary teeth, are often overlooked as “just temporary,” but their role is critical in your child’s overall development. Dr. Sarina Harman-Tinnel, Dr. Nicole, and Dr. Garling emphasize the importance of preserving and caring for these little teeth to support healthy growth, speech development, and future adult tooth alignment.

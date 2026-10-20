@@ -1,11 +1,11 @@
 ---
-title: "Protect Your Child’s Smile with Dental Sealants at HT Complete Family Dentistry"
+title: 'Protect Your Child’s Smile with Dental Sealants at HT Complete Family Dentistry'
 description: "Protect your child's smile with dental sealants at HT Complete Family Dentistry in Overland Park. Call 913-962-0036 to book an appointment today."
 publishDate: 2026-03-04
-category: "Dental Care"
-tags: ["child oral care","dental health","dental sealants"]
+category: 'Dental Care'
+tags: ['child oral care', 'dental health', 'dental sealants']
 heroImage: ../../assets/blog/child-smiling-at-dental-appointment.jpg
-heroImageAlt: "Child smiling in chair and orthodontic appointment"
+heroImageAlt: 'Child smiling in chair and orthodontic appointment'
 ---
 
 At **HT Complete Family Dentistry** in Overland Park, KS, we believe prevention is the cornerstone of lifelong oral health—especially for children. One of the easiest yet most effective ways to safeguard your child’s teeth from decay is through dental sealants. This simple, pain-free treatment acts as a shield, protecting those hard-to-clean chewing surfaces where cavities often begin.

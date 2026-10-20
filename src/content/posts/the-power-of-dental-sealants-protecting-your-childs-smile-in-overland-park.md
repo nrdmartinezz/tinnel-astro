@@ -1,11 +1,11 @@
 ---
-title: "The Power of Dental Sealants: Protecting Your Child’s Smile in Overland Park"
-description: "At Harman-Tinnel Complete Family Dentistry , we know that a healthy smile starts early. As your trusted family dentist in Overland Park, KS, Dr. Sarina…"
+title: 'The Power of Dental Sealants: Protecting Your Child’s Smile in Overland Park'
+description: 'At Harman-Tinnel Complete Family Dentistry , we know that a healthy smile starts early. As your trusted family dentist in Overland Park, KS, Dr. Sarina…'
 publishDate: 2026-05-20
-category: "Dental Care"
-tags: ["child dental health","child dental sealants"]
+category: 'Dental Care'
+tags: ['child dental health', 'child dental sealants']
 heroImage: ../../assets/blog/smiling-child-outdoors.jpg
-heroImageAlt: "Smiling child in outdoor setting"
+heroImageAlt: 'Smiling child in outdoor setting'
 ---
 
 At **Harman-Tinnel Complete Family Dentistry**, we know that a healthy smile starts early. As your trusted family dentist in Overland Park, KS, Dr. Sarina Harman-Tinnel, Dr. Nicole, and Dr. Garling are passionate about preventive care that keeps your children cavity-free. One of the most effective, evidence-backed ways to protect little teeth is through dental sealants. If you’re wondering how sealants work and why they’re an essential part of your child’s dental health plan, you’re in the right place.

@@ -1,11 +1,11 @@
 ---
-title: "Beyond Sugar: Uncovering Hidden Acids Threatening Your Child’s Enamel"
-description: "Safeguard your child’s enamel from hidden acids. Visit HT Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 to book an appointment today."
+title: 'Beyond Sugar: Uncovering Hidden Acids Threatening Your Child’s Enamel'
+description: 'Safeguard your child’s enamel from hidden acids. Visit HT Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 to book an appointment today.'
 publishDate: 2026-02-22
-category: "Dental Care"
-tags: ["acid damage","child dental health"]
+category: 'Dental Care'
+tags: ['acid damage', 'child dental health']
 heroImage: ../../assets/blog/childs-diet.jpg
-heroImageAlt: "Young girl with soft drink | Child dental health"
+heroImageAlt: 'Young girl with soft drink | Child dental health'
 ---
 
 When parents think of what harms their child’s teeth, sugar usually comes to mind first. While sugar certainly plays a major role in cavity formation, it’s not the only dietary enemy lurking in your child’s meals and snacks. At **HT Complete Family Dentistry** in Overland Park, KS, Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling want to raise awareness about a less obvious but equally damaging issue: **acid erosion** caused by frequent exposure to acidic foods and drinks.
@@ -91,4 +91,4 @@ During your child’s routine visits to HT Complete Family Dentistry, Dr. Harman
 
 Ready to protect your child’s enamel and maintain their healthy smile? Contact HT Complete Family Dentistry today to schedule a visit with our caring team in Overland Park, KS. Call us at **913-962-0036** or visit our [Contact Page](/contact/) to book an appointment.
 
-Remember, *Your Smile is Our Passion* — and we’re here to help every step of the way!
+Remember, _Your Smile is Our Passion_ — and we’re here to help every step of the way!

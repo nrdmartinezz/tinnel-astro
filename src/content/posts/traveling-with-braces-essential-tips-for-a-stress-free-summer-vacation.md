@@ -1,11 +1,11 @@
 ---
-title: "Traveling with Braces: Essential Tips for a Stress-Free Summer Vacation"
-description: "Summer is the season for adventure—road trips, flights, family reunions, and exploring new places. If you or your child wears braces, traveling can bring…"
+title: 'Traveling with Braces: Essential Tips for a Stress-Free Summer Vacation'
+description: 'Summer is the season for adventure—road trips, flights, family reunions, and exploring new places. If you or your child wears braces, traveling can bring…'
 publishDate: 2025-07-11
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/dental-implants-kansas-city.jpg
-heroImageAlt: "dental-implants-kansas-city"
+heroImageAlt: 'dental-implants-kansas-city'
 ---
 
 Summer is the season for adventure—road trips, flights, family reunions, and exploring new places. If you or your child wears braces, traveling can bring unique challenges. With the right preparation and knowledge, you can keep your orthodontic treatment on track and enjoy every moment of your vacation. Whether you’re heading out from Shawnee or planning a cross-country journey, HT Dentistry is here to help you travel confidently with braces. This comprehensive guide covers packing the perfect orthodontic care kit, handling emergencies on the go, and maintaining excellent oral hygiene routines while traveling.

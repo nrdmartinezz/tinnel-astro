@@ -1,8 +1,8 @@
 ---
 title: "Celebrate Children's Dental Health Month: Healthy Habits for Healthy Smiles!"
-description: "Did you know that February is National Children’s Dental Health Month? The American Dental Association declared February 8th as Children’s Dental Health…"
+description: 'Did you know that February is National Children’s Dental Health Month? The American Dental Association declared February 8th as Children’s Dental Health…'
 publishDate: 2024-02-17
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/children-dental-health-month.jpg
 heroImageAlt: "Celebrate Children's Dental Health Month: Healthy Habits for Healthy Smiles!"

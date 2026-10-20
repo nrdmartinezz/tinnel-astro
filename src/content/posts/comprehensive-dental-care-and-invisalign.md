@@ -1,11 +1,11 @@
 ---
-title: "Comprehensive Dental Care and Invisalign"
-description: "Dr. Harman-Tinnel and Dr. Prinz talk about what comprehensive dental care is and the role that Invisalign clear aligners play."
+title: 'Comprehensive Dental Care and Invisalign'
+description: 'Dr. Harman-Tinnel and Dr. Prinz talk about what comprehensive dental care is and the role that Invisalign clear aligners play.'
 publishDate: 2021-12-15
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/invisalign-comprehensive-dentistry.jpg
-heroImageAlt: "Invisalign and Comprehensive Dental Care"
+heroImageAlt: 'Invisalign and Comprehensive Dental Care'
 ---
 
 [Dr. Harman-Tinnel](/our-practice/meet-dr-tinnel/) and [Dr. Prinz](/our-practice/) here at HT Complete Family Dentistry and today we’re going to talk about our idea of comprehensive dentistry and what that looks like within our practice. So what exactly is comprehensive dentistry? It is dental care that takes a sort of ‘whole body' approach at the mouth. There are so many things involved with your teeth. Your airway is part of it, of course, as are tongue movement, lips, cheeks, etc. All of that works together toward getting that optimal smile.

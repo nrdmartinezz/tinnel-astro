@@ -1,11 +1,11 @@
 ---
-title: "Oral Health Awareness Month: Understanding the Link Between Oral Health and Overall Wellness"
-description: "Now that flowers are starting to bloom and April is here, our team at HT Complete Family Dentistry is welcoming spring and celebrating Oral Health…"
+title: 'Oral Health Awareness Month: Understanding the Link Between Oral Health and Overall Wellness'
+description: 'Now that flowers are starting to bloom and April is here, our team at HT Complete Family Dentistry is welcoming spring and celebrating Oral Health…'
 publishDate: 2024-04-25
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/oral-health-month-2.jpg
-heroImageAlt: "Oral Health Awareness Month: Understanding the Link Between Oral Health and Overall Wellness"
+heroImageAlt: 'Oral Health Awareness Month: Understanding the Link Between Oral Health and Overall Wellness'
 ---
 
 Now that flowers are starting to bloom and April is here, our team at [HT Complete Family Dentistry](/our-practice/) is welcoming spring and celebrating Oral Health Awareness month! This month serves as a reminder of the important connection between our oral health and our overall wellness. Keeping a clean and healthy smile can actually improve your overall well-being. Proper oral hygiene and regular dental care play a crucial role in maintaining a healthy and happy lifestyle. Let’s dive deeper into the link between oral health and overall wellness with the help of Dr. Tinnel and Dr. Prinz.

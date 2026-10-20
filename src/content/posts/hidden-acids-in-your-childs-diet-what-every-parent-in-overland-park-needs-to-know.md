@@ -1,11 +1,11 @@
 ---
-title: "Hidden Acids in Your Child’s Diet: What Every Parent in Overland Park Needs to Know"
-description: "Learn about acid erosion vs. cavities at Harman-Tinnel Complete Family Dentistry, Overland Park, KS. Call 913-962-0036 for expert kids’ dental care today."
+title: 'Hidden Acids in Your Child’s Diet: What Every Parent in Overland Park Needs to Know'
+description: 'Learn about acid erosion vs. cavities at Harman-Tinnel Complete Family Dentistry, Overland Park, KS. Call 913-962-0036 for expert kids’ dental care today.'
 publishDate: 2026-05-04
-category: "News"
-tags: ["acid erosion","child dental care"]
+category: 'News'
+tags: ['acid erosion', 'child dental care']
 heroImage: ../../assets/blog/smiling-child-with-lollipop.jpg
-heroImageAlt: "Smiling young girl with a lollipop"
+heroImageAlt: 'Smiling young girl with a lollipop'
 ---
 
 As your trusted family dentist in Overland Park, KS, here at **Harman-Tinnel Complete Family Dentistry**, we understand how important your child’s smile is to you—and to us. While cavities are a common concern, many parents might not realize that acid erosion from everyday foods and drinks can also quietly damage their child’s teeth. Recognizing the difference between acid erosion and cavities is key to protecting your child’s dental health.

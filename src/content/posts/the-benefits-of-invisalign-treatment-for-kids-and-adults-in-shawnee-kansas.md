@@ -1,11 +1,11 @@
 ---
-title: "The Benefits of Invisalign Treatment for Kids and Adults in Overland Park, Kansas"
-description: "Hi, I’m Dr. Sarina Harman-Tinnel from HT Complete Family Dentistry in Overland Park, KS , and today I want to talk to you about Invisalign treatment…"
+title: 'The Benefits of Invisalign Treatment for Kids and Adults in Overland Park, Kansas'
+description: 'Hi, I’m Dr. Sarina Harman-Tinnel from HT Complete Family Dentistry in Overland Park, KS , and today I want to talk to you about Invisalign treatment…'
 publishDate: 2022-02-08
-category: "Invisalign"
+category: 'Invisalign'
 tags: []
 heroImage: ../../assets/blog/invisalign-kids-adults-shawnee.jpg
-heroImageAlt: "The Benefits of Invisalign Treatment for Kids and Adults in Overland Park, Kansas"
+heroImageAlt: 'The Benefits of Invisalign Treatment for Kids and Adults in Overland Park, Kansas'
 ---
 
 Hi, I’m Dr. Sarina Harman-Tinnel from [HT Complete Family Dentistry in Overland Park, KS](/our-practice/), and today I want to talk to you about Invisalign treatment. [Invisalign clear aligners](/invisalign/) are one of the most popular treatment options we offer our patients both for bite correction and straightening crooked or otherwise misaligned teeth.

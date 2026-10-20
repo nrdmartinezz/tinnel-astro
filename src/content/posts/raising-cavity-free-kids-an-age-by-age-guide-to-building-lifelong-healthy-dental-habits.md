@@ -1,11 +1,11 @@
 ---
-title: "Raising Cavity-Free Kids: An Age-by-Age Guide to Building Lifelong Healthy Dental Habits"
-description: "At Harman-Tinnel Complete Family Dentistry , we believe that a healthy smile starts early. As your family dentist in Overland Park, KS, our goal is to…"
+title: 'Raising Cavity-Free Kids: An Age-by-Age Guide to Building Lifelong Healthy Dental Habits'
+description: 'At Harman-Tinnel Complete Family Dentistry , we believe that a healthy smile starts early. As your family dentist in Overland Park, KS, our goal is to…'
 publishDate: 2026-04-20
-category: "Dental Care"
-tags: ["cavity-free kids","child dental care"]
+category: 'Dental Care'
+tags: ['cavity-free kids', 'child dental care']
 heroImage: ../../assets/blog/young-girl-smiling-brushing-teeth.jpg
-heroImageAlt: "Smiling child brushing her teeth"
+heroImageAlt: 'Smiling child brushing her teeth'
 ---
 
 At **Harman-Tinnel Complete Family Dentistry**, we believe that a healthy smile starts early. As your family dentist in Overland Park, KS, our goal is to partner with you to raise cavity-free kids by instilling strong dental habits at every stage of childhood. Dr. Sarina Harman-Tinnel, Dr. Nicole, and Dr. Garling have crafted this age-by-age guide to help you nurture your child’s oral health from infancy through the teenage years. When combined with regular dental visits and personalized care, these tips create the foundation for lifelong smiles.

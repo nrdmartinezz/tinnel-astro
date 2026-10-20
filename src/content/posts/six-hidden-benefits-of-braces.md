@@ -1,11 +1,11 @@
 ---
-title: "Six Hidden Benefits of Braces"
-description: "At Harman-Tinnel Complete Family Dentistry, our number one goal is to help each one of our patients preserve the health of their smile. Most of our…"
+title: 'Six Hidden Benefits of Braces'
+description: 'At Harman-Tinnel Complete Family Dentistry, our number one goal is to help each one of our patients preserve the health of their smile. Most of our…'
 publishDate: 2023-12-29
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/6-benefits-of-braces-4.jpg
-heroImageAlt: "Six Hidden Benefits of Braces"
+heroImageAlt: 'Six Hidden Benefits of Braces'
 ---
 
 ### Improving More than just Aesthetics

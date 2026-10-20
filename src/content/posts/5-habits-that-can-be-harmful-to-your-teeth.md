@@ -1,11 +1,11 @@
 ---
-title: "5 Habits That can be Harmful to Your Teeth"
-description: "Hello, Dr. Sarina Harman-Tinnel here with HT Complete Family Dentistry in Overland Park, KS . As your dentist, I want to teach you how to properly care…"
+title: '5 Habits That can be Harmful to Your Teeth'
+description: 'Hello, Dr. Sarina Harman-Tinnel here with HT Complete Family Dentistry in Overland Park, KS . As your dentist, I want to teach you how to properly care…'
 publishDate: 2022-07-29
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/5-bad-habits.jpg
-heroImageAlt: "5 Habits That can be Harmful to Your Teeth"
+heroImageAlt: '5 Habits That can be Harmful to Your Teeth'
 ---
 
 Hello, [Dr. Sarina Harman-Tinnel](/our-practice/meet-dr-tinnel/) here with [HT Complete Family Dentistry in Overland Park, KS](/our-practice/). As your dentist, I want to teach you how to properly care for your teeth, so you can have the best smile possible! Investing in the treatment process is a big commitment and we don’t want anything to harm your smile during that process.

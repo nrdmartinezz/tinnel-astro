@@ -1,11 +1,11 @@
 ---
-title: "Orthodontics for Adults: Breaking Myths and Highlighting New Opportunities"
-description: "The common belief that orthodontic treatment is exclusively for children or teens is fading fast. At HT Complete Family Dentistry, located at 11644 75th…"
+title: 'Orthodontics for Adults: Breaking Myths and Highlighting New Opportunities'
+description: 'The common belief that orthodontic treatment is exclusively for children or teens is fading fast. At HT Complete Family Dentistry, located at 11644 75th…'
 publishDate: 2025-08-01
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/Aesthetic-treatment-Overland-Park-KS-Harmen-Tinnel-Family-Dentistry.jpg
-heroImageAlt: "Aesthetic-treatment-Overland-Park-KS-Harmen-Tinnel-Family-Dentistry"
+heroImageAlt: 'Aesthetic-treatment-Overland-Park-KS-Harmen-Tinnel-Family-Dentistry'
 ---
 
 ## Introduction: It’s Never Too Late to Perfect Your Smile

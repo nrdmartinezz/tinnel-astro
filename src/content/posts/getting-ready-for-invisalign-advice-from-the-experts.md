@@ -1,11 +1,11 @@
 ---
-title: "Getting Ready for Invisalign: Advice from the Experts"
-description: "At Harman-Tinnel Complete Family Dentistry, we are proud to offer Invisalign Clear Aligners to the Overland Park community to help our patients achieve…"
+title: 'Getting Ready for Invisalign: Advice from the Experts'
+description: 'At Harman-Tinnel Complete Family Dentistry, we are proud to offer Invisalign Clear Aligners to the Overland Park community to help our patients achieve…'
 publishDate: 2023-08-30
-category: "Invisalign"
+category: 'Invisalign'
 tags: []
 heroImage: ../../assets/blog/how-to-prepare-invisalign.jpg
-heroImageAlt: "Getting Ready for Invisalign: Advice from the Experts"
+heroImageAlt: 'Getting Ready for Invisalign: Advice from the Experts'
 ---
 
 At Harman-Tinnel Complete Family Dentistry, we are proud to offer [Invisalign Clear Aligners](/invisalign/) to the [Overland Park](/contact/) community to help our patients achieve their dream smile! Our team knows how exciting it is to finally get your Invisalign applied, but we also know it can feel a little nerve-wracking at the same time! It's okay to feel a mix of excitement and nervousness – that's totally normal! Choosing to get clear aligners is a big step toward having a better smile, and it's natural to have different feelings about it.

@@ -1,11 +1,11 @@
 ---
-title: "Earning an A+ Smile: 7 Reasons Why September is the Perfect Time to Start Your Invisalign Journey"
-description: "As the summer days slowly fade away and the crisp autumn air begins to creep in, September marks a time of new beginnings. For a lot of our patients, it’s…"
+title: 'Earning an A+ Smile: 7 Reasons Why September is the Perfect Time to Start Your Invisalign Journey'
+description: 'As the summer days slowly fade away and the crisp autumn air begins to creep in, September marks a time of new beginnings. For a lot of our patients, it’s…'
 publishDate: 2024-09-27
-category: "Invisalign"
+category: 'Invisalign'
 tags: []
 heroImage: ../../assets/blog/earning-A-smile.jpg
-heroImageAlt: "Earning an A+ Smile: 7 Reasons Why September is the Perfect Time to Start Your Invisalign Journey"
+heroImageAlt: 'Earning an A+ Smile: 7 Reasons Why September is the Perfect Time to Start Your Invisalign Journey'
 ---
 
 As the summer days slowly fade away and the crisp autumn air begins to creep in, September marks a time of new beginnings. For a lot of our patients, it’s the start of a new school year, the reorganization of schedules after vacation. For residents of Overland Park, KS, it’s also the perfect moment to focus on something equally important: your smile.

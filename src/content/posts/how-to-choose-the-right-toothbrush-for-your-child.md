@@ -1,11 +1,11 @@
 ---
-title: "How to Choose the Right Toothbrush for Your Child"
+title: 'How to Choose the Right Toothbrush for Your Child'
 description: "Choosing the right toothbrush and toothpaste is vital to your kiddo's oral health, and it’s important to know what tools are best for their oral care at…"
 publishDate: 2023-11-28
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/choose-right-toothbrush-HT.jpg
-heroImageAlt: "How to Choose the Right Toothbrush for Your Child"
+heroImageAlt: 'How to Choose the Right Toothbrush for Your Child'
 ---
 
 Choosing the right toothbrush and toothpaste is vital to your kiddo's oral health, and it’s important to know what tools are best for their oral care at every developmental stage. From your baby’s first tooth to your teenager starting orthodontic treatment, our team at [HT Complete Family Dentistry](/our-practice/) is here to help you find the right choice for their best smile!

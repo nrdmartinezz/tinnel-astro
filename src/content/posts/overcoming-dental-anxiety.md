@@ -1,11 +1,11 @@
 ---
-title: "Overcoming Dental Anxiety"
-description: "Dental anxiety is totally normal and is experienced by a large portion of the population. Some individuals even avoid the dentist altogether because of…"
+title: 'Overcoming Dental Anxiety'
+description: 'Dental anxiety is totally normal and is experienced by a large portion of the population. Some individuals even avoid the dentist altogether because of…'
 publishDate: 2022-06-29
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/beating-dental-anxiety.jpg
-heroImageAlt: "Overcoming Dental Anxiety"
+heroImageAlt: 'Overcoming Dental Anxiety'
 ---
 
 Dental anxiety is totally normal and is experienced by a large portion of the population. Some individuals even avoid the dentist altogether because of their dental anxiety. At [Harman-Tinnel Complete Family Dentistry](/our-practice/), we do our best to make each patient feel comfortable, so your oral health is never compromised! If you are one of the several individuals that face apprehension before a dental appointment, see if our tips on Overcoming Dental Anxiety can help bring you comfort.

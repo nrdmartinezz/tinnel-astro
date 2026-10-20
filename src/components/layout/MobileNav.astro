@@ -94,18 +94,16 @@ const externalAttrs = (link: { external?: boolean }) =>
           return (
             <li class="border-line-base border-b">
               <div class="relative flex min-h-12 items-center">
-                {
-                  item.href && (
-                    <a
-                      href={item.href}
-                      aria-current={isCurrent(item.href) ? 'page' : undefined}
-                      class="text-ink-base aria-[current=page]:text-ink-brand relative z-10 inline-flex min-h-12 items-center rounded-md px-2 text-base no-underline aria-[current=page]:font-medium"
-                      {...externalAttrs(item)}
-                    >
-                      {item.label}
-                    </a>
-                  )
-                }
+                {item.href && (
+                  <a
+                    href={item.href}
+                    aria-current={isCurrent(item.href) ? 'page' : undefined}
+                    class="text-ink-base aria-[current=page]:text-ink-brand relative z-10 inline-flex min-h-12 items-center rounded-md px-2 text-base no-underline aria-[current=page]:font-medium"
+                    {...externalAttrs(item)}
+                  >
+                    {item.label}
+                  </a>
+                )}
                 <button
                   type="button"
                   class:list={[

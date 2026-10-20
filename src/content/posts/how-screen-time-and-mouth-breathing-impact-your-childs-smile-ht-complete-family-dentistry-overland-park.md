@@ -1,11 +1,11 @@
 ---
-title: "How Screen Time and Mouth Breathing Impact Your Child’s Smile | HT Complete Family Dentistry, Overland Park"
-description: "Discover how screen time and mouth breathing affect kids’ dental health. HT Complete Family Dentistry, Overland Park. Call 913-962-0036 to book an appointment."
+title: 'How Screen Time and Mouth Breathing Impact Your Child’s Smile | HT Complete Family Dentistry, Overland Park'
+description: 'Discover how screen time and mouth breathing affect kids’ dental health. HT Complete Family Dentistry, Overland Park. Call 913-962-0036 to book an appointment.'
 publishDate: 2026-02-12
-category: "Dental Care"
-tags: ["child dental health","mouth breathing","screen time"]
+category: 'Dental Care'
+tags: ['child dental health', 'mouth breathing', 'screen time']
 heroImage: ../../assets/blog/child-on-mobile-phone-screen.jpg
-heroImageAlt: "Young boy plays games on smart phone | Child dental health"
+heroImageAlt: 'Young boy plays games on smart phone | Child dental health'
 ---
 
 In today’s digital age, screens are an integral part of childhood. Whether it’s tablets for learning, video games, or streaming cartoons, kids in Overland Park—and beyond—are spending more hours than ever in front of electronic devices. While many parents are aware of how too much screen time can affect sleep and activity levels, fewer realize it can encourage **mouth breathing**, a habit that can have lasting effects on a child’s dental health and facial growth.

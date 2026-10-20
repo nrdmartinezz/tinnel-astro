@@ -1,11 +1,11 @@
 ---
-title: "What to Expect After Braces: Your Guide to Retention and Keeping Your Smile Perfect"
-description: "Preserve your new smile with HT Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 for expert retainer guidance today."
+title: 'What to Expect After Braces: Your Guide to Retention and Keeping Your Smile Perfect'
+description: 'Preserve your new smile with HT Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 for expert retainer guidance today.'
 publishDate: 2026-01-15
-category: "Dental Care"
-tags: ["after braces","orthodontic health","retainers"]
+category: 'Dental Care'
+tags: ['after braces', 'orthodontic health', 'retainers']
 heroImage: ../../assets/blog/life-after-retainers-smiling-young-woman.jpg
-heroImageAlt: "Smiling young woman seated at orthodontics appointment"
+heroImageAlt: 'Smiling young woman seated at orthodontics appointment'
 ---
 
 Completing your orthodontic treatment — whether it’s finally getting your braces removed or finishing your last Invisalign aligner — is an exciting achievement. At **HT Complete Family Dentistry** in Overland Park, KS, we know how rewarding it is to see your smile beautifully aligned after months of dedication. But the journey doesn’t end there. This marks the start of the retention phase, a crucial step to ensure your teeth stay in their new positions for years to come.

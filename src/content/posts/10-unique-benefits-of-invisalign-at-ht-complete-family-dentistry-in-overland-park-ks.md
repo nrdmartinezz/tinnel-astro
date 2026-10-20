@@ -1,11 +1,11 @@
 ---
-title: "10 Unique Benefits of Invisalign at HT Complete Family Dentistry in Overland Park, KS"
-description: "Invisalign Clear Aligners have been popular for years now, but what makes Invisalign at HT Complete Family Dentistry the obvious choice for Overland Park…"
+title: '10 Unique Benefits of Invisalign at HT Complete Family Dentistry in Overland Park, KS'
+description: 'Invisalign Clear Aligners have been popular for years now, but what makes Invisalign at HT Complete Family Dentistry the obvious choice for Overland Park…'
 publishDate: 2024-08-23
-category: "Invisalign"
+category: 'Invisalign'
 tags: []
 heroImage: ../../assets/blog/Benefits-of-Invisalign-3.jpg
-heroImageAlt: "10 Unique Benefits of Invisalign at HT Complete Family Dentistry in Overland Park, KS"
+heroImageAlt: '10 Unique Benefits of Invisalign at HT Complete Family Dentistry in Overland Park, KS'
 ---
 
 Invisalign Clear Aligners have been popular for years now, but what makes Invisalign at HT Complete Family Dentistry the obvious choice for Overland Park residents? Dr. Tinnel and Dr. Prinz offer several advanced treatment options to solve all of your dental and orthodontic needs, but Invisalign is by far our most popular and transformative solution.

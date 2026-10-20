@@ -1,11 +1,11 @@
 ---
-title: "Five Perks of Following Your Dentist on Social Media"
-description: "Facebook, Twitter, Instagram and Tiktok are all social media apps we find ourselves, and our teens, browsing throughout the day. These social media…"
+title: 'Five Perks of Following Your Dentist on Social Media'
+description: 'Facebook, Twitter, Instagram and Tiktok are all social media apps we find ourselves, and our teens, browsing throughout the day. These social media…'
 publishDate: 2023-02-23
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/socialmedia-blogcover.jpg
-heroImageAlt: "Five Perks of Following Your Dentist on Social Media"
+heroImageAlt: 'Five Perks of Following Your Dentist on Social Media'
 ---
 
 Facebook, Twitter, Instagram and Tiktok are all social media apps we find ourselves, and our teens, browsing throughout the day. These social media platforms provide easy access to our friends, family members and even celebrities we follow. These platforms are also a practical way for patients to connect and stay up to date with their dentist! [Dr. Harman-Tinnel](/our-practice/meet-dr-tinnel/), [Dr. Prinz](/our-practice/) and the HT Complete Family Dentistry office want you to stay in the know with office happenings and updates.

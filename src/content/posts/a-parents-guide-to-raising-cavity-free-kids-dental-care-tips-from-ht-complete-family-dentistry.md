@@ -1,11 +1,11 @@
 ---
-title: "A Parent’s Guide to Raising Cavity-Free Kids: Dental Care Tips from HT Complete Family Dentistry"
-description: "HT Complete Family Dentistry in Overland Park helps parents raise cavity-free kids. Call 913-962-0036 to schedule your child’s dental visit today."
+title: 'A Parent’s Guide to Raising Cavity-Free Kids: Dental Care Tips from HT Complete Family Dentistry'
+description: 'HT Complete Family Dentistry in Overland Park helps parents raise cavity-free kids. Call 913-962-0036 to schedule your child’s dental visit today.'
 publishDate: 2026-03-20
-category: "Dental Care"
-tags: ["cavity-free","child dental care","oral health"]
+category: 'Dental Care'
+tags: ['cavity-free', 'child dental care', 'oral health']
 heroImage: ../../assets/blog/all-ages-dental-health-teen-boy.jpg
-heroImageAlt: "Smiling boy on blue background"
+heroImageAlt: 'Smiling boy on blue background'
 ---
 
 Every parent dreams of seeing their child smile brightly and confidently. At **HT Complete Family Dentistry** in Overland Park, KS, Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling understand that navigating your child's dental milestones can sometimes feel confusing. When should you schedule that first dental appointment? How early should you start flossing? What role does fluoride play? We’re here to simplify these questions with an age-by-age guide to help you nurture your child’s oral health from infancy through the school years.
@@ -81,4 +81,4 @@ At **HT Complete Family Dentistry**, your child’s smile is our passion. We’r
 
 ---
 
-*Learn more about our pediatric dental services, including preventive care and Invisalign options for teens, at [https://www.drtinnel.com/invisalign](/invisalign/).*
+_Learn more about our pediatric dental services, including preventive care and Invisalign options for teens, at [https://www.drtinnel.com/invisalign](/invisalign/)._

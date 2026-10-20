@@ -1,14 +1,14 @@
 ---
-title: "How Nutrition Supports Your Orthodontic Journey: Eating for a Healthier Smile in Overland Park"
-description: "Discover how diet boosts orthodontic success with HT Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 to learn more."
+title: 'How Nutrition Supports Your Orthodontic Journey: Eating for a Healthier Smile in Overland Park'
+description: 'Discover how diet boosts orthodontic success with HT Complete Family Dentistry in Overland Park, KS. Call 913-962-0036 to learn more.'
 publishDate: 2025-12-07
-category: "Dental Care"
-tags: ["healthy smile","orthodontic nutrition"]
+category: 'Dental Care'
+tags: ['healthy smile', 'orthodontic nutrition']
 heroImage: ../../assets/blog/smiling-young-woman-eating-apple.jpg
-heroImageAlt: "Smiling young woman eating apple"
+heroImageAlt: 'Smiling young woman eating apple'
 ---
 
-Starting orthodontic treatment at **HT Complete Family Dentistry** often leads to discussions about foods to avoid—think sticky candies, crunchy snacks, and other items that might harm braces or Invisalign aligners. While steering clear of these foods is essential, focusing on what you *should* eat plays an equally important role in ensuring your teeth and gums stay healthy throughout your treatment with Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling.
+Starting orthodontic treatment at **HT Complete Family Dentistry** often leads to discussions about foods to avoid—think sticky candies, crunchy snacks, and other items that might harm braces or Invisalign aligners. While steering clear of these foods is essential, focusing on what you _should_ eat plays an equally important role in ensuring your teeth and gums stay healthy throughout your treatment with Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling.
 
 ### Building Blocks for a Strong Smile
 
@@ -71,4 +71,4 @@ At HT Complete Family Dentistry, we’re passionate about supporting your whole 
 
 Ready to take the next step toward your healthiest smile? Call us today at **913-962-0036** or visit our [Invisalign page](/invisalign/) to schedule your consultation with Dr. Sarina Harman-Tinnel, Dr. Whitney, or Dr. Garling.
 
-*Your smile is our passion — let’s make it shine together!*
+_Your smile is our passion — let’s make it shine together!_

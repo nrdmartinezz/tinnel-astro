@@ -1,11 +1,11 @@
 ---
-title: "HTCFD - Oral Health Awareness Month"
-description: "Oral Health Awareness Month: Understanding the Link Between Oral Health and Overall Wellness Now that flowers are starting to bloom and April is here, our…"
+title: 'HTCFD - Oral Health Awareness Month'
+description: 'Oral Health Awareness Month: Understanding the Link Between Oral Health and Overall Wellness Now that flowers are starting to bloom and April is here, our…'
 publishDate: 2024-04-24
-category: "Dental Care"
+category: 'Dental Care'
 tags: []
 heroImage: ../../assets/blog/5-tips-child-dental-HT.jpg
-heroImageAlt: "5 Easy Tips to Prepare Your Child for Their First Dental Visit"
+heroImageAlt: '5 Easy Tips to Prepare Your Child for Their First Dental Visit'
 ---
 
 **Oral Health Awareness Month: Understanding the Link Between Oral Health and Overall Wellness**

@@ -1,11 +1,11 @@
 ---
-title: "Understanding and Preventing Gum Disease: A Comprehensive Guide"
-description: "Our number one goal at HT Complete Family Dentistry is to help educate our patients on proper oral hygiene to prevent issues like cavities, gum disease…"
+title: 'Understanding and Preventing Gum Disease: A Comprehensive Guide'
+description: 'Our number one goal at HT Complete Family Dentistry is to help educate our patients on proper oral hygiene to prevent issues like cavities, gum disease…'
 publishDate: 2024-05-25
-category: "News"
+category: 'News'
 tags: []
 heroImage: ../../assets/blog/understanding-gum-disease-1.jpg
-heroImageAlt: "Understanding and Preventing Gum Disease: A Comprehensive Guide"
+heroImageAlt: 'Understanding and Preventing Gum Disease: A Comprehensive Guide'
 ---
 
 Our number one goal at [HT Complete Family Dentistry](/our-practice/) is to help educate our patients on proper oral hygiene to prevent issues like cavities, gum disease, and tooth decay. Most of our patients know the dangers of cavities and tooth decay, but we get a lot of questions about how to properly combat gum disease, so we want to use our expertise to dive a little deeper into the issue.

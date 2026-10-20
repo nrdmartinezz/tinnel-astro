@@ -1,11 +1,11 @@
 ---
-title: "Bruxism and Orthodontics: How Teeth Grinding Can Influence Your Treatment and Smile Health"
-description: "Discover how teeth grinding impacts orthodontic care at HT Complete Family Dentistry in Overland Park. Call 913-962-0036 to learn more today!"
+title: 'Bruxism and Orthodontics: How Teeth Grinding Can Influence Your Treatment and Smile Health'
+description: 'Discover how teeth grinding impacts orthodontic care at HT Complete Family Dentistry in Overland Park. Call 913-962-0036 to learn more today!'
 publishDate: 2025-11-26
-category: "Dental Care"
-tags: ["bruxism","orthodontic health","teeth grinding","tmj"]
+category: 'Dental Care'
+tags: ['bruxism', 'orthodontic health', 'teeth grinding', 'tmj']
 heroImage: ../../assets/blog/woman-sleeping-bruxism.jpg
-heroImageAlt: "Young woman sleeping uncomfortably with bruxism symptoms"
+heroImageAlt: 'Young woman sleeping uncomfortably with bruxism symptoms'
 ---
 
 If you often wake up with jaw soreness, headaches, or sensitive teeth, you might be among the many people experiencing **bruxism**, commonly known as teeth grinding or clenching. At **HT Complete Family Dentistry** in Overland Park, KS, Dr. Sarina Harman-Tinnel, Dr. Whitney, and Dr. Garling regularly see patients affected by this condition. Understanding how bruxism interacts with orthodontic treatment is key to protecting your smile both during and after your care.
